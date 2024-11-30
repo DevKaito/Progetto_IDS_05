@@ -1,5 +1,9 @@
 package progetto_ids_05;
 
+/**
+ * @brief Classe che si occupa della creazione e gestione di una nuova istanza di un contatto.
+ * 
+ */
 public class Contatto {
     private String nome;
     private String cognome;
@@ -8,6 +12,14 @@ public class Contatto {
     private Integer ID;
     private static int contatore = 0;
     
+    /**
+     * @brief Costruttore che si occupa della creazione di un contatto con i parametri ricevuti.
+     * 
+     * @param nome, nome del contatto 
+     * @param cognome, cognome del contatto
+     * @param numeriTelefono[], array di massimo 3 numeri di telefono
+     * @param indirizziEmail[], array di massimo 3 indirizzi Email
+     */
     public Contatto(String nome, String cognome, String[] numeriTelefono, String[] indirizziEmail){
         this.nome = nome;
         this.cognome = cognome;
