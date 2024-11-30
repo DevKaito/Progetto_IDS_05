@@ -11,7 +11,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
         contatti = new TreeMap<>();
     }
     
-     /**
+    /**
     * @brief Crea e aggiunge un contatto alla rubrica.
     *
     * Prende come parametro un contatto "Contatto c" da aggiungere alla rubrica e lo aggiunge.
@@ -29,6 +29,17 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
         TrasferimentoContatti.importaContatto(contatti, "contatti.ser");
     }
     
+    /**
+    * @brief Modifica un contatto dalla rubrica.
+    *
+    * Prende come parametro un contatto "Contatto c" e lo modifca.
+    *
+    * @pre Il contatto che si ha intenzione di modificare esista in rubrica.
+    * @post Il contatto viene modificato con successo dalla rubrica.
+    * 
+    *
+    * @param c Il contatto "Contatto c" da modificare dalla rubrica.
+    */
     public void modificaContatto(Contatto c){
         
     }
@@ -36,16 +47,14 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     /**
     * @brief Rimuove un contatto dalla rubrica.
     *
-    * Questo metodo prende come parametro un contatto "Contatto c" e lo rimuove dalla rubrica, ritornando nulla.
+    * Prende come parametro un contatto "Contatto c" e lo rimuove dalla rubrica
     *
     * @pre Il contatto che si ha intenzione di rimuovere esista in rubrica.
     * @post Il contatto viene rimosso con successo dalla rubrica.
     * 
     *
-    * @param[in] Il contatto "Contatto c" da aggiungere alla rubrica.
-    * @return void
+    * @param c Il contatto "Contatto c" da rimuovere dalla rubrica.
     */
-
     public void rimuoviContatto(Contatto c){
         
     }

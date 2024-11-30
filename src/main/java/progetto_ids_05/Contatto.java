@@ -28,7 +28,7 @@ public class Contatto {
         return this.numeriTelefono;
     }
     
-    public String[] indirizziEmail(){
+    public String[] getIndirizziEmail(){
        return this.indirizziEmail;
     }
     
