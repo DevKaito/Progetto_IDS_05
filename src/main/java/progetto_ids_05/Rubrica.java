@@ -7,6 +7,9 @@ import java.util.TreeMap;
 public class Rubrica implements CercaContatto, OrdinaContatto {
     private Map<Integer, Contatto> contatti;
     
+    /**
+    * @brief Inizializza la rubrica.
+    */
     public Rubrica(){
         contatti = new TreeMap<>();
     }
@@ -14,7 +17,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     /**
     * @brief Crea e aggiunge un contatto alla rubrica.
     *
-    * Prende come parametro un contatto "Contatto c" da aggiungere alla rubrica e lo aggiunge.
+    * Prende come parametro un contatto "Contatto c" da aggiungere alla rubrica.
     *
     * @pre none
     * @post Il contatto viene aggiunto alla rubrica.
@@ -24,7 +27,16 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     public void aggiungiContattoRubrica(Contatto c){
         
     }
-    
+    /**
+    * @brief Aggiunge un contatto alla rubrica.
+    * 
+    * Prende come parametro un contatto "Contatto c" da un file esterno da aggiungere alla rubrica.
+    * 
+    * @pre Venga scelto almeno un contatto e il file abbia almeno un contatto.
+    * @post I contatti scelti dal file vengono aggiunti alla rubrica.
+    * 
+    * @param c Il contatto "Contatto c" da aggiungere alla rubrica.
+    */
     public void aggiungiContattoFile(Contatto c){
         TrasferimentoContatti.importaContatto(contatti, "contatti.ser");
     }
@@ -59,12 +71,33 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
         
     }
     
+    /**
+    * @brief Ricerca una stringa in rubrica.
+    * 
+    * Prende da parametro "String searchValue" e ricerca in rubrica tutti i contatti contenenti la stringa.
+    * 
+    * @pre Presenza di contatti in rubrica.
+    * @post La rubrica viene filtrata in base al testo scritto nella barra di ricerca.
+    * 
+    * @param searchValue Stringa inserita dall'utente nella barra di ricerca.
+    * @return Contatto[].
+    */
     @Override
     public Contatto[] eseguiRicerca(String searchValue){
         return new Contatto[1];
     }
     
-   @Override
+    /**
+    * @brief Applica un ordinamento alla rubrica.
+    * 
+    * Ordina la rubrica in base a "Ordinamento o" preso da parametro.
+    * 
+    * @pre Presenza di contatti in rubrica.
+    * @post I contatti in rubrica vengono visualizzati in ordine alfabetico.
+    * 
+    * @param o Tipo di ordinamento.
+    */
+    @Override
     public void applicaOrdinamento(Ordinamento o){
         
     }
