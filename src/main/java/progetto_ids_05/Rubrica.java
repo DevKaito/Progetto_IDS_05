@@ -22,7 +22,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     * @param c Il contatto "Contatto c" da aggiungere alla rubrica.
     */
     public void aggiungiContattoRubrica(Contatto c){
-        
+        //aaaa
     }
     
     public void aggiungiContattoFile(Contatto c){
