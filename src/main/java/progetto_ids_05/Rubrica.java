@@ -24,6 +24,8 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     public void aggiungiContattoRubrica(Contatto c){
         //aaaa
     }
+        
+    } //-
     
     public void aggiungiContattoFile(Contatto c){
         TrasferimentoContatti.importaContatto(contatti, "contatti.ser");
