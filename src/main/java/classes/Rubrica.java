@@ -5,6 +5,7 @@ import interfaces.OrdinaContatto;
 import enumerators.Ordinamento;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.List;
 
 public class Rubrica implements CercaContatto, OrdinaContatto {
     private Map<Integer, Contatto> contatti;
@@ -19,42 +20,48 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     /**
     * @brief Crea e aggiunge un contatto alla rubrica.
     *
-    * Prende come parametro un contatto "Contatto c" da aggiungere alla rubrica.
+    * Prende come parametri i dati del contatto (nome, cognome, numero/i di telefono e indirizzo/i e-mail) da aggiungere alla rubrica.
     *
     * @pre none
     * @post Il contatto viene aggiunto alla rubrica.
     * 
-    * @param c Il contatto "Contatto c" da aggiungere alla rubrica.
+    * @param nome.
+    * @param cognome.
+    * @param numeroTelefoni[].
+    * @param indirizzoEmail[].
     */
-    public void aggiungiContattoRubrica(Contatto c){
-        contatti.put(c.getID(), c);
+    public void aggiungiContattoRubrica(String nome, String cognome, String[] numeroTelefoni, String[] indirizziEmail){
+        //contatti.put(c.getID(), c);
     }
     /**
-    * @brief Aggiunge un contatto alla rubrica.
+    * @brief Aggiunge dei contatti alla rubrica.
     * 
-    * Prende come parametro un contatto "Contatto c" da un file esterno da aggiungere alla rubrica.
+    * Prende come parametro un array di contatti "Contatto[] c" da un file esterno da aggiungere alla rubrica.
     * 
     * @pre Venga scelto almeno un contatto e il file abbia almeno un contatto.
     * @post I contatti scelti dal file vengono aggiunti alla rubrica.
     * 
-    * @param c Il contatto "Contatto c" da aggiungere alla rubrica.
+    * @param c[].
     */
-    public void aggiungiContattoFile(Contatto c){
+    public void aggiungiContattoFile(Contatto[] c){
         TrasferimentoContatti.importaContatto(contatti, "contatti.ser");
     }
     
     /**
     * @brief Modifica un contatto dalla rubrica.
     *
-    * Prende come parametro un contatto "Contatto c" e lo modifca.
+    * Prende come parametri i dati del contatto (nome, cognome, numero/i di telefono e indirizzo/i e-mail) e li modifica.
     *
-    * @pre Il contatto che si ha intenzione di modificare esista in rubrica.
-    * @post Il contatto viene modificato con successo dalla rubrica.
+    * @pre I parametri siano validi.
+    * @post I dati del contatto vengono modificati con successo.
     * 
     *
-    * @param c Il contatto "Contatto c" da modificare dalla rubrica.
+    * @param nome.
+    * @param cognome.
+    * @param numeroTelefoni[].
+    * @param indirizzoEmail[].
     */
-    public void modificaContatto(Contatto c){
+    public void modificaContatto(String nome, String cognome, String[] numeroTelefoni, String[] indirizziEmail){
         
     }
     
@@ -80,17 +87,17 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     /**
     * @brief Ricerca una stringa in rubrica.
     * 
-    * Prende da parametro "String searchValue" e ricerca in rubrica tutti i contatti contenenti la stringa.
+    * Prende da parametro "String searchValue" e ritorna una lista di "Contatto", filtrata in base alla stringa inserita.
     * 
     * @pre Presenza di contatti in rubrica.
     * @post La rubrica viene filtrata in base al testo scritto nella barra di ricerca.
     * 
     * @param searchValue Stringa inserita dall'utente nella barra di ricerca.
-    * @return Contatto[].
+    * @return List<Contatto>.
     */
     @Override
-    public Contatto[] eseguiRicerca(String searchValue){
-        return new Contatto[1];
+    public List<Contatto> eseguiRicerca(String searchValue){
+        //
     }
     
     /**
