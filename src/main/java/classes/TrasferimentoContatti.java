@@ -1,5 +1,9 @@
-package progetto_ids_05;
+package classes;
 
+
+
+import classes.Rubrica;
+import classes.Contatto;
 import java.util.Map;
 
 /**

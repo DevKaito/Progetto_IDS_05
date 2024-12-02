@@ -1,7 +1,6 @@
+package interfaces;
 
-package progetto_ids_05.Interfaces;
-
-import progetto_ids_05.Contatto;
+import classes.Contatto;
 
 /**
  * @brief Interfaccia da implementare per la realizzazione della funzionalità di ricerca di contatti nella rubrica

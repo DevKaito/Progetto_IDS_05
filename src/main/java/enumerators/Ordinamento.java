@@ -1,5 +1,4 @@
-package progetto_ids_05;
-
+package enumerators;
 
 public enum Ordinamento {
     OrdineAlfabetico,

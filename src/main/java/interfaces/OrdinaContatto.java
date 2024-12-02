@@ -1,6 +1,6 @@
-package progetto_ids_05.Interfaces;
+package interfaces;
 
-import progetto_ids_05.Ordinamento;
+import enumerators.Ordinamento;
 
 /**
 * @brief Interfaccia per l'implementazione del metodo che si occupa dell'ordinamento dei contatti.
