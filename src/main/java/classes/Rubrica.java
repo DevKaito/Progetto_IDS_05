@@ -7,6 +7,10 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.List;
 
+/**
+ * 
+ * @brief Classe che si occupa della rappresentazione della rubrica contenente funzioni utili per i contatti che contiene.
+ */
 public class Rubrica implements CercaContatto, OrdinaContatto {
     private Map<Integer, Contatto> contatti;
     

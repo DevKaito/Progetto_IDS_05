@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['contatto_0',['Contatto',['../classprogetto__ids__05_1_1_contatto.html',1,'progetto_ids_05.Contatto'],['../classprogetto__ids__05_1_1_contatto.html#a727bbea0ffc979e16cefda94f18316ba',1,'progetto_ids_05.Contatto.Contatto()']]]
+  ['cercacontatto_0',['CercaContatto',['../interfaceinterfaces_1_1_cerca_contatto.html',1,'interfaces']]],
+  ['contatto_1',['Contatto',['../classclasses_1_1_contatto.html',1,'classes.Contatto'],['../classclasses_1_1_contatto.html#a36ef2c18c4e035d403b350785c0b5d01',1,'classes.Contatto.Contatto()']]]
 ];

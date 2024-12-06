@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ordinamento_0',['Ordinamento',['../enumprogetto__ids__05_1_1_ordinamento.html',1,'progetto_ids_05']]]
+  ['ordinacontatto_0',['OrdinaContatto',['../interfaceinterfaces_1_1_ordina_contatto.html',1,'interfaces']]],
+  ['ordinamento_1',['Ordinamento',['../enumenumerators_1_1_ordinamento.html',1,'enumerators']]]
 ];
