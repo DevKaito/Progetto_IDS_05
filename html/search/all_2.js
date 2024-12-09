@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['eseguiricerca_0',['eseguiRicerca',['../classprogetto__ids__05_1_1_rubrica.html#a59c1fd03498cd4c90d881ecdd8810858',1,'progetto_ids_05::Rubrica']]],
-  ['esportacontatto_1',['esportaContatto',['../classprogetto__ids__05_1_1_trasferimento_contatti.html#afb32b3a03844bc7eb63a7a0af8d464b0',1,'progetto_ids_05::TrasferimentoContatti']]]
+  ['eseguiricerca_0',['eseguiRicerca',['../classclasses_1_1_rubrica.html#a3321378ec35df6cdbf4d6474fd736f69',1,'classes.Rubrica.eseguiRicerca()'],['../interfaceinterfaces_1_1_cerca_contatto.html#a46d4a7387e517d07e9e774845cbd140e',1,'interfaces.CercaContatto.eseguiRicerca()']]],
+  ['esportacontatto_1',['esportaContatto',['../classclasses_1_1_trasferimento_contatti.html#a84e033af714310dd1d31e4b1e611c58e',1,'classes::TrasferimentoContatti']]]
 ];

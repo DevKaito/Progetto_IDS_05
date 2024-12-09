@@ -15,8 +15,8 @@ public class TrasferimentoContatti {
     /**
      * @brief Riceve una mappa di contatti e la trasferisce sul file specificato.
      * 
-     * @pre I parametri forniti siano validi
-     * @post I contatti vengono esportati con successo sul file
+     * @pre I parametri forniti siano validi.
+     * @post I contatti vengono esportati con successo sul file.
      * 
      * @param contatti, l'insieme di contatti da esportare.
      * @param filename, il file su cui esportare i contatti.
@@ -26,16 +26,16 @@ public class TrasferimentoContatti {
     }
     
     /**
-     * @brief Riceve una mappa di contatti e aggiunge i contatti presi dal file specificato alla mappa
+     * @brief Riceve una mappa di contatti e aggiunge i contatti presi dal file specificato alla mappa.
      * 
-     * @pre I parametri forniti siano validil
-     * @post I contatti vengono aggiunti alla rubrica.
+     * @pre I parametri forniti siano validi.
+     * @post I contatti vengono importati con successo sulla rubrica.
      * 
      * @param contatti
      * @param filename
-     * @return Rubrica
+     * @return Contatto[]
      */
-    public static Rubrica importaContatto(Map<Integer, Contatto> contatti, String filename){
-        return new Rubrica();
+    public static Contatto[] importaContatto(Map<Integer, Contatto> contatti, String filename){
+        return new Contatto[1];
     }
 }

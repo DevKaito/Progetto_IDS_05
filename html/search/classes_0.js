@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['contatto_0',['Contatto',['../classprogetto__ids__05_1_1_contatto.html',1,'progetto_ids_05']]]
+  ['cercacontatto_0',['CercaContatto',['../interfaceinterfaces_1_1_cerca_contatto.html',1,'interfaces']]],
+  ['contatto_1',['Contatto',['../classclasses_1_1_contatto.html',1,'classes']]]
 ];
