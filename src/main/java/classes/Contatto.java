@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Arrays;
+
 /**
  * @brief Classe che si occupa della creazione e gestione di una istanza di un contatto.
  * 
@@ -66,5 +68,10 @@ public class Contatto {
     
     public void setID(Integer ID){
         this.ID = ID;
+    }
+
+    @Override
+    public String toString(){
+        return "Nome:" + getNome() + ", " + "Cognome: " + getCognome() + ", " + "Numeri di telefono: " + Arrays.toString(getNumeriTelefono()) + ", " +"Indirizzi email: " + Arrays.toString(getIndirizziEmail());
     }
 }
