@@ -11,11 +11,18 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <exec.mainClass>com.unisa.it.progetto_ids_05.Progetto_IDS_05</exec.mainClass>
     </properties>
-    <dependencies>
+    <dependencies> 
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>20.0.1</version>
+        </dependency>
+        <!-- Dipendenza per JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
