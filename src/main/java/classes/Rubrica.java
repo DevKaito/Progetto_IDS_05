@@ -5,6 +5,7 @@ import interfaces.OrdinaContatto;
 import enumerators.Ordinamento;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -31,11 +32,19 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     * 
     * @param nome.
     * @param cognome.
-    * @param numeroTelefoni[].
+    * @param numeriTelefono[].
     * @param indirizzoEmail[].
     */
-    public void aggiungiContattoRubrica(String nome, String cognome, String[] numeroTelefoni, String[] indirizziEmail){
-        //contatti.put(c.getID(), c);
+    public void aggiungiContattoRubrica(String nome, String cognome, String[] numeriTelefono, String[] indirizziEmail){
+
+        if(nome == null){
+            throw new IllegalArgumentException("Non è presente il dato del nome");
+        }
+
+        Contatto c = new Contatto(nome, cognome, numeriTelefono, indirizziEmail);
+        
+        contatti.put(c.getID(), c);
+
     }
     /**
     * @brief Aggiunge dei contatti alla rubrica.
@@ -54,7 +63,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     /**
     * @brief Modifica un contatto dalla rubrica.
     *
-    * Prende come parametri i dati del contatto (nome, cognome, numero/i di telefono e indirizzo/i e-mail) e li modifica.
+    * Prende come parametri i dati del contatto (nome, cognome, numero/i di telefono e indirizzo/i e-mail) e li modifica. Inoltre prende l'ID e lo passa al contatto modificato.
     *
     * @pre I parametri siano validi.
     * @post I dati del contatto vengono modificati con successo.
@@ -64,9 +73,24 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     * @param cognome.
     * @param numeroTelefoni[].
     * @param indirizzoEmail[].
+    * @param ID.
     */
-    public void modificaContatto(String nome, String cognome, String[] numeroTelefoni, String[] indirizziEmail){
-        
+    public void modificaContatto(String nome, String cognome, String[] numeriTelefono, String[] indirizziEmail, int ID){
+        Contatto nuovoContatto = contatti.get(ID);
+
+        nuovoContatto.setNome(nome);
+        nuovoContatto.setCognome(cognome);
+        nuovoContatto.setNumeriTelefono(numeriTelefono);
+        if(numeriTelefono.length > 3){
+            System.err.println("Errore! Un contatto può avere massimo 3 numeri di telefono!");
+        }
+        nuovoContatto.setIndirizziEmail(indirizziEmail);
+        if(indirizziEmail.length > 3){
+            System.err.println("Errore! Un contatto può avere massimo 3 indirizzi email!");
+        }
+
+        contatti.put(ID, nuovoContatto);
+        System.out.println("Contatto modificato con successo");
     }
     
     /**
@@ -101,7 +125,18 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     */
     @Override
     public List<Contatto> eseguiRicerca(String searchValue){
-        //
+
+        List<Contatto> risultati = new LinkedList<Contatto>();
+
+        for (Contatto c : contatti.values()){
+            if(c.getNome().contains(searchValue) | c.getCognome().contains(searchValue) ){
+                risultati.add(c);
+            }
+            else System.err.println("Nessun risultato per '" + searchValue +"'" );
+
+        }
+
+        return risultati;
     }
     
     /**
