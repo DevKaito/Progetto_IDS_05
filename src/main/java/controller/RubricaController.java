@@ -39,7 +39,7 @@ public class RubricaController {
         
         Contatto c = new Contatto("si", "no", new String[]{"33333333"}, new String[]{"m"});
         rubrica = new Rubrica();
-        rubrica.aggiungiContattoRubrica(c);
+        rubrica.aggiungiContattoRubrica(c.getNome(), c.getCognome(), c.getNumeriTelefono(), c.getIndirizziEmail());
         contatti = FXCollections.observableArrayList(rubrica.getContatti().values());
         
         tableView.setItems(contatti);

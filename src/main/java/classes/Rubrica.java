@@ -4,7 +4,10 @@ import interfaces.CercaContatto;
 import interfaces.OrdinaContatto;
 import enumerators.Ordinamento;
 import java.util.Map;
+import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +15,7 @@ import java.util.List;
  * 
  * @brief Classe che si occupa della rappresentazione della rubrica contenente funzioni utili per i contatti che contiene.
  */
-public class Rubrica implements CercaContatto, OrdinaContatto {
+public class Rubrica implements CercaContatto, OrdinaContatto{
     private Map<Integer, Contatto> contatti;
     
     /**
@@ -49,15 +52,18 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     /**
     * @brief Aggiunge dei contatti alla rubrica.
     * 
-    * Prende come parametro un array di contatti "Contatto[] c" da un file esterno da aggiungere alla rubrica.
+    * Prende come parametro il nome del file esterno da cui estrarre i contatti da aggiungere alla rubrica.
     * 
-    * @pre Venga scelto almeno un contatto e il file abbia almeno un contatto.
+    * @pre Venga scelto un file da cui estrarre i contatti 
     * @post I contatti scelti dal file vengono aggiunti alla rubrica.
     * 
-    * @param c[].
+    * @param filename.
     */
-    public void aggiungiContattoFile(Contatto[] c){
-        TrasferimentoContatti.importaContatto(contatti, "contatti.ser");
+    public void aggiungiContattoFile(String filename){
+        List<Contatto> c = TrasferimentoContatti.importaContatto(filename);
+        for (Contatto contatto : c){
+            contatti.put(contatto.getID(), contatto);
+        }
     }
     
     /**
@@ -105,9 +111,9 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     * @param c Il contatto "Contatto c" da rimuovere dalla rubrica.
     */
     public void rimuoviContatto(Contatto c){
-        
+        contatti.remove(c.getID());
     }
-    
+
     public Map<Integer, Contatto> getContatti(){
         return this.contatti;
     }
@@ -125,7 +131,6 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     */
     @Override
     public List<Contatto> eseguiRicerca(String searchValue){
-
         List<Contatto> risultati = new LinkedList<Contatto>();
 
         for (Contatto c : contatti.values()){
@@ -148,9 +153,34 @@ public class Rubrica implements CercaContatto, OrdinaContatto {
     * @post I contatti in rubrica vengono visualizzati in ordine alfabetico.
     * 
     * @param o Tipo di ordinamento.
+    * @param rubrica Rubrica da ordinare.
+    * @return Rubrica.
     */
     @Override
-    public void applicaOrdinamento(Ordinamento o){
-        
+    public Rubrica applicaOrdinamento(Rubrica rubrica, Ordinamento o){
+        List<Map.Entry<Integer, Contatto>> lista = new ArrayList<>(rubrica.getSet());
+        if (o==Ordinamento.OrdineAlfabetico){
+            lista.sort(Comparator
+            .comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getNome())
+            .thenComparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getCognome()));
+            Map<Integer, Contatto> alphaOrdered = new LinkedHashMap<>();
+            for (Map.Entry<Integer, Contatto> entry : lista){
+                alphaOrdered.put(entry.getKey(), entry.getValue());
+            }
+            Rubrica rubricaAlpha = alphaOrdered;
+            return rubricaAlpha;
+        } else if(o==Ordinamento.OrdineStandard) {
+            Rubrica rubricaAggiornata = new Rubrica();
+            for (Contatto contatto : lista){
+                rubricaAggiornata.(contatto.getID(), contatto);
+            }
+
+        }
     }
+
+    private Set<Map.Entry<Integer, Contatto>> getSet(){
+        return contatti.entrySet();
+    }
+    
 }
+

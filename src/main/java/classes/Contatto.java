@@ -6,7 +6,7 @@ import java.util.Arrays;
  * @brief Classe che si occupa della creazione e gestione di una istanza di un contatto.
  * 
  */
-public class Contatto {
+public class Contatto{
     private String nome;
     private String cognome;
     private String[] numeriTelefono;

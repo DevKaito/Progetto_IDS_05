@@ -68,6 +68,15 @@ public class TrasferimentoContatti {
 
         return contatti;
     }
+    /**
+     * @brief Riceve una stringa ed esegue un'analisi di quest'ultima secondo alcuni parametri.
+     * 
+     * @pre La stringa in input sia valida.
+     * @post La stringa viene analizzata secondo i pattern stabiliti.
+     * 
+     * @param line
+     * @return Contatto
+     */
 
     private static Contatto regexContatto (String line){
         String nomeRegex = "Nome:\\s*(\\w+)";
