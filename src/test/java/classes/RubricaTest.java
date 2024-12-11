@@ -3,6 +3,7 @@ package classes;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -79,19 +80,18 @@ public class RubricaTest {
     
     
     /**
-     * Test of aggiungiContattoFile method, of class Rubrica.
-     */
-     /*
+    * Test of aggiungiContattoFile method, of class Rubrica.
+    */
+    
     @Test
     public void testAggiungiContattoFile() {
-        System.out.println("aggiungiContattoFile");
-        String filename = "";
-        Rubrica instance = new Rubrica();
-        instance.aggiungiContattoFile(filename);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String filename = "file.csv";
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", new String[]{"343434", "43434343", "44444", "44444"}, new String[]{"dadada@gmail.com", "dadadadadadad@gmail.com", "adada@gmail.com", "adadada@gmail.com"});
+        r.esportaRubricaFile(filename);
+        r.aggiungiContattoFile(filename);
+        assertEquals(r.getContatti().get(1).toString(), r.getContatti().get(2).toString());
     }
-     */
+     
     /**
      * Test of modificaContatto method, of class Rubrica.
      */

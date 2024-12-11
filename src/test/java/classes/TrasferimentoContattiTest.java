@@ -3,10 +3,8 @@ package classes;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -39,7 +37,7 @@ public class TrasferimentoContattiTest {
     @BeforeEach
     public void setUp() {
         r = new Rubrica();
-        
+        Contatto.setNumeroSequenziale(0);
     }
     
     @AfterEach

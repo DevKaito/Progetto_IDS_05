@@ -62,7 +62,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
         
     }
     /**
-    * @brief Aggiunge dei contatti alla rubrica.
+    * @brief Aggiunge dei contatti presi da un file esterno alla rubrica.
     * 
     * Prende come parametro il nome del file esterno da cui estrarre i contatti da aggiungere alla rubrica.
     * 
