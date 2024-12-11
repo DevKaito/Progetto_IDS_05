@@ -96,19 +96,29 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     public void modificaContatto(String nome, String cognome, String[] numeriTelefono, String[] indirizziEmail, int ID){
         Contatto nuovoContatto = contatti.get(ID);
 
-        nuovoContatto.setNome(nome);
-        nuovoContatto.setCognome(cognome);
-        nuovoContatto.setNumeriTelefono(numeriTelefono);
-        if(numeriTelefono.length > 3){
-            System.err.println("Errore! Un contatto può avere massimo 3 numeri di telefono!");
-        }
-        nuovoContatto.setIndirizziEmail(indirizziEmail);
-        if(indirizziEmail.length > 3){
-            System.err.println("Errore! Un contatto può avere massimo 3 indirizzi email!");
-        }
+        if(!nome.equals("")){
+            nuovoContatto.setNome(nome);
+            nuovoContatto.setCognome(cognome);
+            if(numeriTelefono.length > 3){
+                System.err.println("Errore! Un contatto può avere massimo 3 numeri di telefono!");
+                nuovoContatto.setNumeriTelefono(Arrays.copyOf(numeriTelefono, 3));
+            } else {
+                nuovoContatto.setNumeriTelefono(numeriTelefono);
+            }
 
-        contatti.put(ID, nuovoContatto);
-        System.out.println("Contatto modificato con successo");
+            if(indirizziEmail.length > 3){
+                System.err.println("Errore! Un contatto può avere massimo 3 indirizzi email!");
+                nuovoContatto.setIndirizziEmail(Arrays.copyOf(indirizziEmail, 3));
+            } else {
+                nuovoContatto.setIndirizziEmail(indirizziEmail);
+            }
+
+            contatti.put(ID, nuovoContatto);
+            System.out.println("Contatto modificato con successo");
+            }
+        else{
+            throw new RuntimeException("No");
+        }
     }
     
     /**

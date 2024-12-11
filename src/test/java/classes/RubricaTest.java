@@ -28,6 +28,7 @@ public class RubricaTest {
     @BeforeEach
     public void setUp() {
        r = new Rubrica();
+       Contatto.setNumeroSequenziale(1);
     }
     
     @AfterEach
@@ -37,6 +38,7 @@ public class RubricaTest {
     /**
      * Test of aggiungiContattoRubrica method, of class Rubrica.
      */
+    
     @Test
     public void testAggiungiContattoRubrica1() {
         String nome = "Michele";
@@ -91,21 +93,57 @@ public class RubricaTest {
     /**
      * Test of modificaContatto method, of class Rubrica.
      */
-     /*
+    
     @Test
-    public void testModificaContatto() {
-        System.out.println("modificaContatto");
-        String nome = "";
-        String cognome = "";
-        String[] numeriTelefono = null;
-        String[] indirizziEmail = null;
-        int ID = 0;
-        Rubrica instance = new Rubrica();
-        instance.modificaContatto(nome, cognome, numeriTelefono, indirizziEmail, ID);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testModificaContatto1() {
+        String nome = "Mario";
+        String cognome = "D'Acunto";
+        String numeriTelefono[] = {"2223333444", "77777"};
+        String indirizziEmail[] = {"aaa@gmail.com", "ccc@gmail.com"};
+        String numeriTelefonoModificati[] = {"222333344455", "7777788", "99999", "54232"};
+        String indirizziEmailModificati[] = {"aaab@gmail.com", "cccd@gmail.com", "pdf@gmail.com", "azerbaijan@gmail.com"};
+        
+        String expectedValori[] = {"Michele", "Adinolfi", Arrays.toString(new String[]{"222333344455", "7777788", "99999"}), Arrays.toString(new String[]{"aaab@gmail.com", "cccd@gmail.com", "pdf@gmail.com"})};
+        
+        r.aggiungiContattoRubrica(nome, cognome, numeriTelefono, indirizziEmail);
+        
+        r.modificaContatto("Michele", "Adinolfi", numeriTelefonoModificati , indirizziEmailModificati, 1);
+        
+        Contatto c = r.getContatti().get(1);
+        String actualValori[] = {c.getNome(), c.getCognome(), Arrays.toString(c.getNumeriTelefono()), Arrays.toString(c.getIndirizziEmail())};
+        assertArrayEquals(expectedValori, actualValori);
     }
-     */
+    @Test
+    public void testModificaContatto2() {
+        String nome = "Mario";
+        String cognome = "D'Acunto";
+        String numeriTelefono[] = {"2223333444", "77777"};
+        String indirizziEmail[] = {"aaa@gmail.com", "ccc@gmail.com"};
+        String numeriTelefonoModificati[] = {"22333344455"};
+        String indirizziEmailModificati[] = {"aaab@gmail.com"};
+        
+        String expectedValori[] = {"Michele", "", Arrays.toString(numeriTelefonoModificati), Arrays.toString(indirizziEmailModificati)};
+        
+        r.aggiungiContattoRubrica(nome, cognome, numeriTelefono, indirizziEmail);
+        
+        r.modificaContatto("Michele", "", new String[]{"22333344455"} , new String[]{"aaab@gmail.com"}, 2);
+        
+        Contatto c = r.getContatti().get(2);
+        String actualValori[] = {c.getNome(), c.getCognome(), Arrays.toString(c.getNumeriTelefono()), Arrays.toString(c.getIndirizziEmail())};
+        assertArrayEquals(expectedValori, actualValori);
+    }
+    @Test
+    public void testModificaContatto3() {
+        String nome = "Mario";
+        String cognome = "D'Acunto";
+        String numeriTelefono[] = {"2223333444", "77777"};
+        String indirizziEmail[] = {"aaa@gmail.com", "ccc@gmail.com"};
+        
+        r.aggiungiContattoRubrica(nome, cognome, numeriTelefono, indirizziEmail);
+        RuntimeException e = assertThrows(RuntimeException.class, () -> r.modificaContatto("", "Adinolfi", new String[]{"343434", "43434343", "44444", "44444"}, new String[]{"dadada@gmail.com", "dadadadadadad@gmail.com", "adada@gmail.com", "adadada@gmail.com"}, 1));
+        assertTrue(e.getMessage().contains("No"));
+    }
+    
     /**
      * Test of rimuoviContatto method, of class Rubrica.
      */
