@@ -149,24 +149,22 @@ public class RubricaTest {
     /**
      * Test of rimuoviContatto method, of class Rubrica.
      */
-    /*@Test
+    @Test
     public void testRimuoviContatto() {
         String numeriTelefono[] = {"343434", "43434343", "44444"};
         String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
         
         Contatto c1 = new Contatto("Michele", "Adinolfi", numeriTelefono, indirizziEmail);        
-        Contatto[] cArray = new Contatto[]{};
+        Contatto[] cArray = new Contatto[]{c1};
         //Contatto c2 = new Contatto("Mario", "D'acunto", numeriTelefono, indirizziEmail);
         //expectedLista.put(c2.getID(), c2);
-        
-        Contatto.setNumeroSequenziale(1);
         
         r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
         r.aggiungiContattoRubrica("Mario", "D'acunto", numeriTelefono, indirizziEmail);
         r.rimuoviContatto(2);
         
         assertEquals(expectedMap.values().toArray(), r.getContatti().values().toArray());
-    }*/
+    }
     /**
      * Test of eseguiRicerca method, of class Rubrica.
      */
