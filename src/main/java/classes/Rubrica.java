@@ -24,7 +24,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     * @brief Inizializza la rubrica.
     */
     public Rubrica(){
-        contatti = new TreeMap<>();
+        contatti = new LinkedHashMap<>();
     }
     
     /**
