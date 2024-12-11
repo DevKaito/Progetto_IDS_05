@@ -111,7 +111,18 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     * @param c Il contatto "Contatto c" da rimuovere dalla rubrica.
     */
     public void rimuoviContatto(Contatto c){
-        contatti.remove(c.getID());
+        
+        int currID = c.getID();
+        contatti.remove(currID);
+        
+        for(int i = currID+1; i<contatti.size(); i++){
+            Contatto ctemp = contatti.get(i);
+            ctemp.setID(i--);
+            if((i+1) == contatti.size()){
+                ctemp.setNumeroSequenziale(i);
+            }
+        }
+        
     }
 
     public Map<Integer, Contatto> getContatti(){
