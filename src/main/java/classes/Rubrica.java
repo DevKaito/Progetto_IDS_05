@@ -89,8 +89,8 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     *
     * @param nome.
     * @param cognome.
-    * @param numeroTelefoni[].
-    * @param indirizzoEmail[].
+    * @param numeriTelefono[].
+    * @param indirizziEmail[].
     * @param ID.
     */
     public void modificaContatto(String nome, String cognome, String[] numeriTelefono, String[] indirizziEmail, int ID){
@@ -122,18 +122,23 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     *
     * @param c Il contatto "Contatto c" da rimuovere dalla rubrica.
     */
-    public void rimuoviContatto(Contatto c){
-        
-        int currID = c.getID();
-        contatti.remove(currID);
-        
-        for(int i = currID+1; i<contatti.size(); i++){
-            Contatto ctemp = contatti.get(i);
-            ctemp.setID(i--);
-            if((i+1) == contatti.size()){
-                ctemp.setNumeroSequenziale(i);
+    public void rimuoviContatto(Integer ID){
+        if(contatti.containsKey(ID)){
+            int currID = ID;
+            contatti.remove(currID);   
+            for(int i = currID+1; i<contatti.size(); i++){
+                Contatto ctemp = contatti.get(i);
+                ctemp.setID(i--);
+                if((i+1) == contatti.size()){
+                    Contatto.setNumeroSequenziale(i);
+                }
             }
         }
+        else{
+            throw new RuntimeException("Non esiste tale contatto");
+        }
+        
+        
         
     }
 

@@ -1,6 +1,8 @@
 package classes;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -109,32 +111,24 @@ public class RubricaTest {
     /**
      * Test of rimuoviContatto method, of class Rubrica.
      */
-     /*
     @Test
     public void testRimuoviContatto() {
-        System.out.println("rimuoviContatto");
-        Contatto c = null;
-        Rubrica instance = new Rubrica();
-        instance.rimuoviContatto(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String numeriTelefono[] = {"343434", "43434343", "44444"};
+        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
+        
+        Contatto c1 = new Contatto("Michele", "Adinolfi", numeriTelefono, indirizziEmail);        
+        Contatto[] cArray = new Contatto[]{};
+        //Contatto c2 = new Contatto("Mario", "D'acunto", numeriTelefono, indirizziEmail);
+        //expectedLista.put(c2.getID(), c2);
+        
+        Contatto.setNumeroSequenziale(1);
+        
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Mario", "D'acunto", numeriTelefono, indirizziEmail);
+        r.rimuoviContatto(2);
+        
+        assertEquals(expectedMap.values().toArray(), r.getContatti().values().toArray());
     }
-
-    /**
-     * Test of getContatti method, of class Rubrica.
-     */
-     /*
-    @Test
-    public void testGetContatti() {
-        System.out.println("getContatti");
-        Rubrica instance = new Rubrica();
-        Map<Integer, Contatto> expResult = null;
-        Map<Integer, Contatto> result = instance.getContatti();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of eseguiRicerca method, of class Rubrica.
      */
