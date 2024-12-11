@@ -70,7 +70,7 @@ public class Contatto{
         this.ID = ID;
     }
     
-    public void setNumeroSequenziale(Integer numeroSequenziale){
+    public static void setNumeroSequenziale(Integer numeroSequenziale){
         Contatto.contatore = numeroSequenziale;
     }
 
