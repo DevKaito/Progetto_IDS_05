@@ -69,6 +69,10 @@ public class Contatto{
     public void setID(Integer ID){
         this.ID = ID;
     }
+    
+    public void setNumeroSequenziale(Integer numeroSequenziale){
+        this.contatore = contatore;
+    }
 
     @Override
     public String toString(){
