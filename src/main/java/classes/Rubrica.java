@@ -172,22 +172,23 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     @Override
     public void applicaOrdinamento(Ordinamento o){
         List<Map.Entry<Integer, Contatto>> lista = new ArrayList<>(this.getSet());
+        Map<Integer, Contatto> orderedList = new LinkedHashMap<>();
         if (o==Ordinamento.OrdineAlfabetico){
             lista.sort(Comparator.comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getNome())
             .thenComparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getCognome()));
-            Map<Integer, Contatto> alphaOrdered = new LinkedHashMap<>();
+            
             for (Map.Entry<Integer, Contatto> entry : lista){
-                alphaOrdered.put(entry.getKey(), entry.getValue());
+                orderedList.put(entry.getKey(), entry.getValue());
             }
-            this.contatti =  alphaOrdered;
-        } else if(o==Ordinamento.OrdineStandard) {
+        } 
+        else if(o==Ordinamento.OrdineStandard) {
             lista.sort(Comparator.comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getID()));
-            Map<Integer, Contatto> rubricaStandard = new LinkedHashMap<>();
             for (Map.Entry<Integer, Contatto> entry : lista){
-                rubricaStandard.put(entry.getKey(), entry.getValue());
+                orderedList.put(entry.getKey(), entry.getValue());
             }
-
         }
+        
+        this.contatti = orderedList;
     }
 
     private Set<Map.Entry<Integer, Contatto>> getSet(){
