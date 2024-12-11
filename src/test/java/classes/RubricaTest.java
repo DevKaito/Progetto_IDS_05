@@ -150,7 +150,7 @@ public class RubricaTest {
      * Test of rimuoviContatto method, of class Rubrica.
      */
     @Test
-    public void testRimuoviContatto() {
+    public void testRimuoviContatto1() {
         String numeriTelefono[] = {"343434", "43434343", "44444"};
         String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
         
@@ -159,11 +159,24 @@ public class RubricaTest {
         //Contatto c2 = new Contatto("Mario", "D'acunto", numeriTelefono, indirizziEmail);
         //expectedLista.put(c2.getID(), c2);
         
+        Contatto.setNumeroSequenziale(0);
+        
         r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
         r.aggiungiContattoRubrica("Mario", "D'acunto", numeriTelefono, indirizziEmail);
         r.rimuoviContatto(2);
         
-        assertEquals(expectedMap.values().toArray(), r.getContatti().values().toArray());
+        assertEquals(Arrays.toString(cArray), Arrays.toString(r.getContatti().values().toArray()));
+    }
+    @Test
+    public void testRimuoviContatto2() {
+        String numeriTelefono[] = {"343434", "43434343", "44444"};
+        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
+        
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Mario", "D'acunto", numeriTelefono, indirizziEmail);
+        
+        RuntimeException e = assertThrows(RuntimeException.class, () -> r.rimuoviContatto(4));
+        assertTrue(e.getMessage().contains("Non esiste tale contatto"));
     }
     /**
      * Test of eseguiRicerca method, of class Rubrica.
