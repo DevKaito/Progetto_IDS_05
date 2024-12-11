@@ -55,12 +55,12 @@ public class TrasferimentoContatti {
         List<Contatto> contatti = new LinkedList<>();
         try (Scanner s = new Scanner(new BufferedReader(new FileReader(filename)))){
            
-            if (s.nextLine()==null) throw new IOException("File vuoto");
-            s.useDelimiter("[\n]");
+            if (!s.hasNextLine()) throw new IOException("File vuoto");
 
             while(s.hasNext()){
                 Contatto contatto = regexContatto(s.nextLine());
-                contatti.add(contatto);
+                if(contatto != null)
+                    contatti.add(contatto);
             }
         }catch (IOException ex){
             System.err.println("File non trovato: " + ex.getMessage());
@@ -78,11 +78,11 @@ public class TrasferimentoContatti {
      * @return Contatto
      */
 
-    private static Contatto regexContatto (String line){
+    protected static Contatto regexContatto (String line){
         String nomeRegex = "Nome:\\s*(\\w+)";
         String cognomeRegex = "Cognome:\\s*(\\w+)";
         String numRegex = "Numeri di telefono:\\s*\\[(.*?)\\]";
-        String emailRegex = "Indirizzi email:\\s*\\[(.*?)\\] ";
+        String emailRegex = "Indirizzi email:\\s*\\[(.*?)\\];";
 
         Pattern patternNome = Pattern.compile(nomeRegex);
         Pattern patternCognome = Pattern.compile(cognomeRegex);
@@ -100,17 +100,18 @@ public class TrasferimentoContatti {
         String[] email = matcherEmail.find() ? matcherEmail.group(1).split(",\\s*") : new String[0];
 
         if (numTelefono.length > 3){
-            numTelefono = Arrays.copyOf(numTelefono, 3);
             System.err.println("Superato il limite di numeri di telefono possedibili. Sono stati selezionati i primi 3");
+            numTelefono = Arrays.copyOf(numTelefono, 3);  
         }
         if (email.length > 3){
+            System.err.println("Superato il limite di email possedibili. Sono state selezionate le prime 3");
             email = Arrays.copyOf(email, 3);
-            System.err.println("Superato il limite di numeri di telefono possedibili. Sono stati selezionati i primi 3");
         }
 
-        if (nome!=null && cognome != null){
-            return new Contatto(nome, cognome, numTelefono, email);
+        if (nome==null){
+            System.err.println("Nome non trovato");
+            return null;
         }
-        else return null;
+        return new Contatto(nome, cognome, numTelefono, email);
     }
 }

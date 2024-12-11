@@ -216,6 +216,19 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
         this.contatti = orderedList;
     }
 
+    /**
+     * @brief Esporta la rubrica su un file esterno.
+     * 
+     * @pre Il file scelto sia valido
+     * @post La rubrica viene esportata sul file scelto.
+     * 
+     * @param filename
+     */
+    public void esportaRubricaFile(String filename){
+        TrasferimentoContatti.esportaContatto(contatti, filename);
+    }
+
+
     private Set<Map.Entry<Integer, Contatto>> getSet(){
         return contatti.entrySet();
     }

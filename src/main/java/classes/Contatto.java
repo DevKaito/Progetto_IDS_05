@@ -76,6 +76,6 @@ public class Contatto{
 
     @Override
     public String toString(){
-        return "Nome:" + getNome() + ", " + "Cognome: " + getCognome() + ", " + "Numeri di telefono: " + Arrays.toString(getNumeriTelefono()) + ", " +"Indirizzi email: " + Arrays.toString(getIndirizziEmail());
+        return "Nome: " + getNome() + ", " + "Cognome: " + getCognome() + ", " + "Numeri di telefono: " + Arrays.toString(getNumeriTelefono()) + ", " +"Indirizzi email: " + Arrays.toString(getIndirizziEmail());
     }
 }
