@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -157,22 +159,21 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     * @return Rubrica.
     */
     @Override
-    public Rubrica applicaOrdinamento(Rubrica rubrica, Ordinamento o){
-        List<Map.Entry<Integer, Contatto>> lista = new ArrayList<>(rubrica.getSet());
+    public void applicaOrdinamento(Ordinamento o){
+        List<Map.Entry<Integer, Contatto>> lista = new ArrayList<>(this.getSet());
         if (o==Ordinamento.OrdineAlfabetico){
-            lista.sort(Comparator
-            .comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getNome())
+            lista.sort(Comparator.comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getNome())
             .thenComparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getCognome()));
             Map<Integer, Contatto> alphaOrdered = new LinkedHashMap<>();
             for (Map.Entry<Integer, Contatto> entry : lista){
                 alphaOrdered.put(entry.getKey(), entry.getValue());
             }
-            Rubrica rubricaAlpha = alphaOrdered;
-            return rubricaAlpha;
+            this.contatti =  alphaOrdered;
         } else if(o==Ordinamento.OrdineStandard) {
-            Rubrica rubricaAggiornata = new Rubrica();
-            for (Contatto contatto : lista){
-                rubricaAggiornata.(contatto.getID(), contatto);
+            lista.sort(Comparator.comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getID()));
+            Map<Integer, Contatto> rubricaStandard = new LinkedHashMap<>();
+            for (Map.Entry<Integer, Contatto> entry : lista){
+                rubricaStandard.put(entry.getKey(), entry.getValue());
             }
 
         }
@@ -181,6 +182,5 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     private Set<Map.Entry<Integer, Contatto>> getSet(){
         return contatti.entrySet();
     }
-    
 }
 
