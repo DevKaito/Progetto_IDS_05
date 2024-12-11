@@ -71,7 +71,7 @@ public class Contatto{
     }
     
     public void setNumeroSequenziale(Integer numeroSequenziale){
-        this.contatore = contatore;
+        Contatto.contatore = numeroSequenziale;
     }
 
     @Override

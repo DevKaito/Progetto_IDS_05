@@ -3,9 +3,11 @@ package classes;
 import interfaces.CercaContatto;
 import interfaces.OrdinaContatto;
 import enumerators.Ordinamento;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -36,18 +38,28 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     * @param nome.
     * @param cognome.
     * @param numeriTelefono[].
-    * @param indirizzoEmail[].
+    * @param indirizziEmail[].
     */
     public void aggiungiContattoRubrica(String nome, String cognome, String[] numeriTelefono, String[] indirizziEmail){
-
-        if(nome == null){
-            throw new IllegalArgumentException("Non è presente il dato del nome");
-        }
-
-        Contatto c = new Contatto(nome, cognome, numeriTelefono, indirizziEmail);
         
-        contatti.put(c.getID(), c);
-
+        if(!nome.isEmpty()){
+            if(numeriTelefono.length > 3){
+                System.err.println("Superato il limite di numeri di telefono possedibili. Sono stati selezionati i primi 3");
+                numeriTelefono = Arrays.copyOf(numeriTelefono, 3);
+            }
+            
+            if(indirizziEmail.length > 3){
+                System.err.println("Superato il limite di indirizzi email possedibili. Sono stati selezionati i primi 3");
+                indirizziEmail = Arrays.copyOf(indirizziEmail, 3);
+            }
+            
+            Contatto c = new Contatto(nome, cognome, numeriTelefono, indirizziEmail);
+            contatti.put(c.getID(), c);
+        }
+        else{
+            throw new RuntimeException("No");
+        }
+        
     }
     /**
     * @brief Aggiunge dei contatti alla rubrica.
