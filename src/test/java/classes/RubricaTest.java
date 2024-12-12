@@ -1,12 +1,19 @@
 package classes;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import enumerators.Ordinamento;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -181,32 +188,104 @@ public class RubricaTest {
     /**
      * Test of eseguiRicerca method, of class Rubrica.
      */
-     /*
+     
     @Test
-    public void testEseguiRicerca() {
+    public void testEseguiRicerca1(){
+        String numeriTelefono[] = {"343434", "43434343", "44444"};
+        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
         
-        System.out.println("eseguiRicerca");
-        String searchValue = "";
-        Rubrica instance = new Rubrica();
-        List<Contatto> expResult = null;
-        List<Contatto> result = instance.eseguiRicerca(searchValue);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Mario", "D'acunto", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Giovanni", "Del Nero", numeriTelefono, indirizziEmail);
+
+        List <Contatto> risultati = r.eseguiRicerca("M");
+        assertEquals(2, risultati.size());
+        
+    }
+
+    @Test
+    public void testEseguiRicerca2(){
+        String numeriTelefono[] = {"343434", "43434343", "44444"};
+        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
+        
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Mario", "d'acunto", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Giovanni", "DEL NERO", numeriTelefono, indirizziEmail);
+
+        List <Contatto> risultati = r.eseguiRicerca("D'ACUNTO");
+        assertEquals(1, risultati.size());
+        
+    }
+
+    @Test
+    public void testEseguiRicerca3(){
+        String numeriTelefono[] = {"343434", "43434343", "44444"};
+        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
+        
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Mario", "d'acunto", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Giovanni", "DEL NERO", numeriTelefono, indirizziEmail);
+
+        ByteArrayOutputStream error = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(error));
+
+        List <Contatto> risultati = r.eseguiRicerca("Di lieto");
+        assertTrue(risultati.isEmpty());
+
+        String messaggioAtteso = "Nessun risultato per 'Di lieto'";
+        assertTrue(error.toString().contains(messaggioAtteso));
+
+        System.setErr(System.err);
+        
     }
 
     /**
      * Test of applicaOrdinamento method, of class Rubrica.
      */
-     /*
+     
     @Test
-    public void testApplicaOrdinamento() {
-        System.out.println("applicaOrdinamento");
-        Ordinamento o = null;
-        Rubrica instance = new Rubrica();
-        instance.applicaOrdinamento(o);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testApplicaOrdinamento1() {
+        String numeriTelefono[] = {"343434", "43434343", "44444"};
+        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
+        
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Mario", "d'acunto", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Giovanni", "DEL NERO", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Michele", "Kaito", numeriTelefono, indirizziEmail);
+
+        r.applicaOrdinamento(Ordinamento.OrdineAlfabetico);
+
+        List<Contatto> risultati = new ArrayList<>(r.getContatti().values());
+
+        assertEquals("Giovanni", risultati.get(0).getNome());
+        assertEquals("Mario", risultati.get(1).getNome());
+        assertEquals("Michele", risultati.get(2).getNome());
+        assertEquals("Michele", risultati.get(3).getNome());
+
+        assertEquals("Adinolfi", risultati.get(2).getCognome());
+        assertEquals("Kaito", risultati.get(3).getCognome());
     }
-    */
+
+    @Test
+    public void testApplicaOrdinamento2() {
+        String numeriTelefono[] = {"343434", "43434343", "44444"};
+        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
+        
+        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Mario", "d'acunto", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Giovanni", "DEL NERO", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Michele", "Kaito", numeriTelefono, indirizziEmail);
+
+        r.applicaOrdinamento(Ordinamento.OrdineStandard);
+
+        List<Contatto> risultati = new ArrayList<>(r.getContatti().values());
+
+        assertEquals("Michele", risultati.get(0).getNome());
+        assertEquals("Mario", risultati.get(1).getNome());
+        assertEquals("Giovanni", risultati.get(2).getNome());
+        assertEquals("Michele", risultati.get(3).getNome());
+
+        assertEquals("Adinolfi", risultati.get(0).getCognome());
+        assertEquals("Kaito", risultati.get(3).getCognome());
+    }
 }

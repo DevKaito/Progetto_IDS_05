@@ -170,9 +170,11 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     @Override
     public List<Contatto> eseguiRicerca(String searchValue){
         List<Contatto> risultati = new LinkedList<Contatto>();
+        String searchValueLower = searchValue.toLowerCase();
+        
 
         for (Contatto c : contatti.values()){
-            if(c.getNome().contains(searchValue) | c.getCognome().contains(searchValue) ){
+            if(c.getNome().toLowerCase().contains(searchValueLower) | c.getCognome().toLowerCase().contains(searchValueLower)){
                 risultati.add(c);
             }
             else System.err.println("Nessun risultato per '" + searchValue +"'" );
@@ -188,7 +190,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     * Ordina la rubrica in base a "Ordinamento o" preso da parametro.
     * 
     * @pre Presenza di contatti in rubrica.
-    * @post I contatti in rubrica vengono visualizzati in ordine alfabetico.
+    * @post I contatti in rubrica vengono visualizzati in ordine alfabetico oppure in ordine di inserimento.
     * 
     * @param o Tipo di ordinamento.
     * @param rubrica Rubrica da ordinare.
