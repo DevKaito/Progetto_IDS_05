@@ -53,7 +53,7 @@ public class TrasferimentoContattiTest {
         String filename = "file.csv";
         String expectedvalue = "";
         Map<Integer, Contatto> mappa = new LinkedHashMap<>();
-        Contatto c = new Contatto("Michele", "Adinolfi", new String[]{"343434", "43434343", "44444", "44444"}, new String[]{"dadada@gmail.com", "dadadadadadad@gmail.com", "adada@gmail.com", "adadada@gmail.com"});
+        Contatto c = new Contatto("Michele", "Adinolfi", new String[]{"3341847499", "3341847497", "3341847494", "3334444555"}, new String[]{"dadada@gmail.com", "dadadadadadad@gmail.com", "adada@gmail.com", "adadada@gmail.com"});
         mappa.put(c.getID(), c);
         TrasferimentoContatti.esportaContatto(mappa, filename);
         try(Scanner s = new Scanner(new BufferedReader(new FileReader(filename)))){
@@ -72,7 +72,7 @@ public class TrasferimentoContattiTest {
     public void testImportaContatto1() {
         String filename = "file.csv";
         Map<Integer, Contatto> mappa = new LinkedHashMap<>();
-        Contatto c = new Contatto("Michele", "Adinolfi", new String[]{"343434", "43434343", "44444"}, new String[]{"dadada@gmail.com", "dadadadadadad@gmail.com", "adada@gmail.com"});
+        Contatto c = new Contatto("Michele", "Adinolfi", new String[]{"3341847499", "3341847497", "3341847494"}, new String[]{"dadada@gmail.com", "dadadadadadad@gmail.com", "adada@gmail.com"});
         mappa.put(c.getID(), c);
         TrasferimentoContatti.esportaContatto(mappa, filename);
         List<Contatto> lista = TrasferimentoContatti.importaContatto(filename);
@@ -84,7 +84,7 @@ public class TrasferimentoContattiTest {
     */
     @Test
     public void testRegexContatto(){
-         String expectedValori[] = {"Nome: Michele", "Cognome: Adinolfi", "Numeri di telefono: " + Arrays.toString(new String[]{"222333344455", "7777788", "99999"}), "Indirizzi email: " + Arrays.toString(new String[]{"aaab@gmail.com", "cccd@gmail.com", "pdf@gmail.com"})+";"};
+         String expectedValori[] = {"Nome: Michele", "Cognome: Adinolfi", "Numeri di telefono: " + Arrays.toString(new String[]{"3341847499", "3341847497", "3341847494"}), "Indirizzi email: " + Arrays.toString(new String[]{"aaab@gmail.com", "cccd@gmail.com", "pdf@gmail.com"})+";"};
          Contatto c = TrasferimentoContatti.regexContatto(Arrays.toString(expectedValori));
          assertEquals(Arrays.toString(expectedValori).replaceAll("^\\[|\\]$", ""), c.toString()+";");
     }
