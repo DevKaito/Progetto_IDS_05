@@ -53,6 +53,8 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
                 indirizziEmail = Arrays.copyOf(indirizziEmail, 3);
             }
             
+            
+            
             Contatto c = new Contatto(nome, cognome, numeriTelefono, indirizziEmail);
             contatti.put(c.getID(), c);
         }

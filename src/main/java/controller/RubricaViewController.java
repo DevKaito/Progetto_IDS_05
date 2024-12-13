@@ -2,6 +2,7 @@ package controller;
 
 import classes.Contatto;
 import classes.Rubrica;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,38 +29,44 @@ public class RubricaViewController {
     @FXML
     private TableColumn<Contatto, String> indirizziEmailColumn;
     
-    public RubricaViewController(){
-        initController();
-    }
-    
-    public void initController(){
+    @FXML
+    public void initialize(){
         
         //Searchbar inizialization
-        searchBar = new TextField("Ricerca");
-        searchBar.setText("");
+        searchBar.setPromptText("1233");
         
         //Combobox initialization
-        cmb = new ComboBox();
         cmb.getItems().addAll("Per aggiunta", "Alfabetico");
         cmb.getSelectionModel().selectFirst();
        
         //TableView initialization
-        tableView = new TableView();
-        
         rubrica = new Rubrica();
         rubrica.aggiungiContattoRubrica("si", "no", new String[]{"333333"}, new String[]{"m"});
-        rubrica.aggiungiContattoRubrica("no", "si", new String[]{"666666"}, new String[]{"n"});
+        rubrica.aggiungiContattoRubrica("no", "si", new String[]{"666666", "55555"}, new String[]{"n"});
         rubrica.aggiungiContattoRubrica("sto", "cazzo", new String[]{"999999"}, new String[]{"o"});
         ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
+        for(Contatto c : data){
+            
+        }
         
         System.out.print(data);
         
         nomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("nome"));
         cognomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("cognome"));
-        numeriDiTelefonoColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("numeriTelefono"));
-        indirizziEmailColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("indirizziEmail"));
-        
+        numeriDiTelefonoColumn.setCellValueFactory(cellData -> {
+            String[] numeri = cellData.getValue().getNumeriTelefono();
+            String numeriUniti = String.join("\n", numeri);
+            return new SimpleStringProperty(numeriUniti);
+        });
+        indirizziEmailColumn.setCellValueFactory(cellData -> {
+            String[] indirizzi = cellData.getValue().getIndirizziEmail();
+            String indirizziUniti = String.join("", indirizzi);
+            return new SimpleStringProperty(indirizziUniti);
+        });
         
         tableView.setItems(data);
     }
+    
+    
+    
 }
