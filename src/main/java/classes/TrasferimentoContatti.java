@@ -112,6 +112,21 @@ public class TrasferimentoContatti {
             System.err.println("Nome non trovato");
             return null;
         }
+        
+        for(String s : email){
+            if(!s.contains("@") || !s.contains(".")){
+                System.err.println("L'Email inserita non risulta valida.");
+                return null;
+            }
+        }
+
+        for(String s : numTelefono){
+            if(s.length() != 10 || !s.matches("\\d+")){
+                System.err.println("Il numero di telefono inserito non risulta valido.");
+                return null;
+            }
+        }
+            
         return new Contatto(nome, cognome, numTelefono, email);
     }
 }

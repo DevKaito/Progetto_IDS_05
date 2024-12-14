@@ -41,15 +41,10 @@ public class RubricaViewController {
        
         //TableView initialization
         rubrica = new Rubrica();
-        rubrica.aggiungiContattoRubrica("si", "no", new String[]{"333333"}, new String[]{"m"});
-        rubrica.aggiungiContattoRubrica("no", "si", new String[]{"666666", "55555"}, new String[]{"n"});
-        rubrica.aggiungiContattoRubrica("sto", "cazzo", new String[]{"999999"}, new String[]{"o"});
+        rubrica.aggiungiContattoRubrica("si", "no", new String[]{"3341847499"}, new String[]{"mario@gmail.com"});
+        rubrica.aggiungiContattoRubrica("no", "si", new String[]{"3341847498", "3341857499"}, new String[]{"nintendo@gmail.com"});
+        rubrica.aggiungiContattoRubrica("sto", "cazzo", new String[]{"3761847499"}, new String[]{"ophelia@dnd.com"});
         ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
-        for(Contatto c : data){
-            
-        }
-        
-        System.out.print(data);
         
         nomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("nome"));
         cognomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("cognome"));

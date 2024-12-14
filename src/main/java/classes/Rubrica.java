@@ -53,7 +53,15 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
                 indirizziEmail = Arrays.copyOf(indirizziEmail, 3);
             }
             
+            for(String s : indirizziEmail){
+                if(!s.contains("@") || !s.contains("."))
+                    throw new RuntimeException("L'Email inserita non risulta valida.");
+            }
             
+            for(String s : numeriTelefono){
+                if(s.length() != 10)
+                    throw new RuntimeException("Il numero di telefono inserito non risulta valido");
+            }
             
             Contatto c = new Contatto(nome, cognome, numeriTelefono, indirizziEmail);
             contatti.put(c.getID(), c);
@@ -114,7 +122,17 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
             } else {
                 nuovoContatto.setIndirizziEmail(indirizziEmail);
             }
-
+            
+            for(String s : indirizziEmail){
+                if(!s.contains("@") || !s.contains("."))
+                    throw new RuntimeException("L'Email inserita non risulta valida.");
+            }
+            
+            for(String s : numeriTelefono){
+                if(s.length() != 10 || !s.matches("\\d+"))
+                    throw new RuntimeException("Il numero di telefono inserito non risulta valido");
+            }
+            
             contatti.put(ID, nuovoContatto);
             System.out.println("Contatto modificato con successo");
             }
