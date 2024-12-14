@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -9,31 +10,48 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RubricaViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RubricaViewController">
    <children>
-      <Label text="Rubrica" />
-      <TextField fx:id="searchBar" maxWidth="-Infinity" minWidth="-Infinity" />
+      <Label style="-fx-font-size: 32;" text="Rubrica" />
+      <TextField fx:id="searchBar" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="213.0" promptText="Ricerca Contatto">
+         <VBox.margin>
+            <Insets bottom="20.0" top="5.0" />
+         </VBox.margin></TextField>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Ordinamento: " />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Ordinamento: ">
+               <HBox.margin>
+                  <Insets left="-160.0" />
+               </HBox.margin></Label>
             <ComboBox fx:id="cmb" prefHeight="25.0" prefWidth="134.0" promptText="Ordinamento" />
             <HBox alignment="BOTTOM_RIGHT" prefHeight="25.0" prefWidth="425.0">
                <children>
-                  <Button mnemonicParsing="false" text="Aggiungi" />
-                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Importa">
-                  </Button>
-                  <Button mnemonicParsing="false" text="Esporta" />
+                  <Button fx:id="addBtn" mnemonicParsing="false" text="Aggiungi">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="importBtn" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Importa">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="exportBtn" mnemonicParsing="false" text="Esporta">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
-      <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="823.0">
          <columns>
             <TableColumn fx:id="nomeColumn" prefWidth="87.0" text="Nome" />
             <TableColumn fx:id="cognomeColumn" prefWidth="85.0" text="Cognome" />
             <TableColumn fx:id="numeriDiTelefonoColumn" prefWidth="202.0" text="Numero/i di telefono" />
             <TableColumn fx:id="indirizziEmailColumn" prefWidth="180.0" text="Indirizzo/i E-Mail" />
-            <TableColumn fx:id="gestioneColumn" prefWidth="75.0" text = "Gestione" />
+            <TableColumn fx:id="gestioneColumn" prefWidth="275.0" text="Gestione" />
          </columns>
       </TableView>
    </children>
