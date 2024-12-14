@@ -8,6 +8,8 @@ package controller;
 import classes.Contatto;
 import classes.Rubrica;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author franc
  */
-public class AddEditContactController implements Initializable {
+public class AddEditContactController{
 
     @FXML
     private TextField nameFld;
@@ -41,28 +43,66 @@ public class AddEditContactController implements Initializable {
     @FXML
     private Button submitBtn;
     
-    private Rubrica rubrica;
-    private Contatto contatto;
-    private Boolean isEditMode = false;
+    public Rubrica rubrica;
+    public Integer ID;
+    public Boolean isEditMode = false;
     
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        if (isEditMode && contatto != null) {
+    @FXML
+    public void initialize() {
+        if (isEditMode) {
+            
             // Popola i campi con i dati del contatto esistente
-            nameFld.setText(contatto.getNome());
-            surnameFld.setText(contatto.getCognome());
+            nameFld.setText(rubrica.getContatti().get(ID).getNome());
+            surnameFld.setText(rubrica.getContatti().get(ID).getCognome());
 
-            String[] numeri = contatto.getNumeriTelefono();
+            String[] numeri = rubrica.getContatti().get(ID).getNumeriTelefono();
             if (numeri.length > 0) numberFld1.setText(numeri[0]);
             if (numeri.length > 1) numberFld2.setText(numeri[1]);
             if (numeri.length > 2) numberFld3.setText(numeri[2]);
 
-            String[] emails = contatto.getIndirizziEmail();
+            String[] emails = rubrica.getContatti().get(ID).getIndirizziEmail();
             if (emails.length > 0) emailFld1.setText(emails[0]);
             if (emails.length > 1) emailFld2.setText(emails[1]);
             if (emails.length > 2) emailFld3.setText(emails[2]);
         }
     }
+    
+    @FXML
+    private void handleSubmit(){
+        String nome = nameFld.getText();
+        String cognome = surnameFld.getText();
+        ArrayList<String> numeri = new ArrayList<>();
+        ArrayList<String> email = new ArrayList<>();
+        
+        if(!numberFld1.getText().isEmpty())
+            numeri.add(numberFld1.getText());
+        if(!numberFld2.getText().isEmpty())
+            numeri.add(numberFld2.getText());
+        if(!numberFld3.getText().isEmpty())
+            numeri.add(numberFld3.getText());
+        
+        if(!emailFld1.getText().isEmpty())
+            email.add(emailFld1.getText());
+        if(!emailFld2.getText().isEmpty())
+            email.add(emailFld2.getText());
+        if(!emailFld3.getText().isEmpty())
+            email.add(emailFld3.getText());
+        
+        String[] numeriTelefono = numeri.toArray(new String[numeri.size()]);
+        String[] indirizziEmail =  email.toArray(new String[email.size()]);
+        System.out.print(Arrays.toString(numeriTelefono));
+        System.out.print(Arrays.toString(indirizziEmail));
+        
+        if (isEditMode){
+            rubrica.modificaContatto(nome, cognome, numeriTelefono, indirizziEmail, ID);
+        }
+        else{
+            rubrica.aggiungiContattoRubrica(nome, cognome, numeriTelefono, indirizziEmail);
+        }       
+        
+        Stage stage = (Stage) submitBtn.getScene().getWindow();
+        stage.close();
+    } 
     
     public void setEditMode(Boolean isEditMode){
         this.isEditMode = isEditMode;
@@ -72,32 +112,7 @@ public class AddEditContactController implements Initializable {
         this.rubrica = rubrica;
     }
     
-    public void setContatto(Contatto contatto){
-        this.contatto = contatto;
-        
+    public void setID(Integer ID){
+        this.ID = ID; 
     }
-    
-    @FXML
-    private void handleSubmit(){
-        String nome = nameFld.getText();
-        String cognome = surnameFld.getText();
-        String[] numeriTelefono = {
-            numberFld1.getText(),
-            numberFld2.getText(),
-            numberFld3.getText(),
-        };
-        String[] indirizziEmail = {
-            emailFld1.getText(),
-            emailFld2.getText(),
-            emailFld3.getText(),
-        };
-        
-        if (isEditMode && contatto != null){
-            rubrica.modificaContatto(nome, cognome, numeriTelefono, indirizziEmail, contatto.getID());
-        }else rubrica.aggiungiContattoRubrica(nome, cognome, numeriTelefono, indirizziEmail);
-        
-        Stage stage = (Stage) submitBtn.getScene().getWindow();
-        stage.close();
-    } 
-
 }

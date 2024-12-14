@@ -59,42 +59,43 @@ public class RubricaViewController {
         //Combobox initialization
         cmb.getItems().addAll("Per aggiunta", "Alfabetico");
         cmb.getSelectionModel().selectFirst();
-        
         cmb.setOnAction(event -> handleOrdinamento());
         
+        //Utility buttons inizialization
         gestisciButtons();
-        
         addBtn.setOnAction(event -> addContactWindow());
-    
-        System.out.println(getClass().getResource("/resources/AddEditContact.fxml"));
        
-        //TableView initialization
+        //TableView initialization con contatti di prova
         rubrica = new Rubrica();
         rubrica.aggiungiContattoRubrica("si", "no", new String[]{"3341847499"}, new String[]{"mario@gmail.com"});
         rubrica.aggiungiContattoRubrica("no", "si", new String[]{"3341847498", "3341857499"}, new String[]{"nintendo@gmail.com"});
         rubrica.aggiungiContattoRubrica("Amedeo", "Pratola", new String[]{"3761847499"}, new String[]{"ophelia@dnd.com"});
         rubrica.aggiungiContattoRubrica("Amedeo", "Bianco", new String[]{"3761347499", "9898908983"}, new String[]{"violayio@dnd.com"});
-        ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
         
-        nomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("nome"));
-        cognomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("cognome"));
-        numeriDiTelefonoColumn.setCellValueFactory(cellData -> {
-            String[] numeri = cellData.getValue().getNumeriTelefono();
-            String numeriUniti = String.join("\n", numeri);
-            return new SimpleStringProperty(numeriUniti);
-        });
-        indirizziEmailColumn.setCellValueFactory(cellData -> {
-            String[] indirizzi = cellData.getValue().getIndirizziEmail();
-            String indirizziUniti = String.join("", indirizzi);
-            return new SimpleStringProperty(indirizziUniti);
-        });
-        
-        
-        
-        tableView.setItems(data);
+        updateTableView();
     }
+    private void updateTableView(){
+            ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
+        
+            //Columns initialization
+            nomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("nome"));
+            cognomeColumn.setCellValueFactory(new PropertyValueFactory<Contatto, String>("cognome"));
+            numeriDiTelefonoColumn.setCellValueFactory(cellData -> {
+                String[] numeri = cellData.getValue().getNumeriTelefono();
+                String numeriUniti = String.join("\n", numeri);
+                return new SimpleStringProperty(numeriUniti);
+            });
+            indirizziEmailColumn.setCellValueFactory(cellData -> {
+                String[] indirizzi = cellData.getValue().getIndirizziEmail();
+                String indirizziUniti = String.join("", indirizzi);
+                return new SimpleStringProperty(indirizziUniti);
+            });
+        
+            tableView.setItems(data);
+            tableView.refresh();
+        }
     
-        private void handleOrdinamento(){
+    private void handleOrdinamento(){
     
             String opzioneSelezionata = (String) cmb.getValue();
             
@@ -107,44 +108,25 @@ public class RubricaViewController {
             tableView.setItems(data);
         }
     
-        private void addContactWindow() {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/AddEditContact.fxml"));
-                Parent root = loader.load();
-                AddEditContactController controller = loader.getController();
-                controller.setRubrica(rubrica);
-
-                Stage stage = new Stage();
-                stage.setTitle("Aggiungi Contatto");
-                stage.setScene(new Scene(root));
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.showAndWait();
-
-                ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
-                tableView.setItems(data);
-            } catch (IOException e) {
-                e.printStackTrace();
-        }
-}
-    
-        private void gestisciButtons() {
+    private void gestisciButtons() {
             gestioneColumn.setCellFactory(param -> new TableCell<Contatto, Void>() {
             private final HBox container = new HBox();
             private final Button modificaButton = new Button("Modifica");
             private final Button rimuoviButton = new Button("Rimuovi");
-        
-
+            
             {     
                 modificaButton.setOnAction(event -> {
-                    Contatto contatto = getTableView().getItems().get(getIndex());
-                    if (contatto != null) {
-                        modifyContactWindow(contatto);
+                    Integer ID = getTableView().getItems().get(getIndex()).getID();
+                    if (ID != null) {
+                        modifyContactWindow(ID);
+                        ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
+                        tableView.setItems(data);
                     } else {
                         System.err.println("Contatto non valido per modifica.");
                     }
                 });
 
-                rimuoviButton.setOnAction(event -> {
+                {rimuoviButton.setOnAction(event -> {
                     Contatto contatto = getTableView().getItems().get(getIndex());
                     if (contatto != null) {
                         rubrica.rimuoviContatto(contatto.getID());
@@ -152,15 +134,13 @@ public class RubricaViewController {
                         tableView.setItems(data);
                     } 
                 });
-
+                }
                 modificaButton.setStyle("-fx-background-color: lightblue; -fx-text-fill: black;");
                 rimuoviButton.setStyle("-fx-background-color: lightcoral; -fx-text-fill: black;");
                 container.setSpacing(10); // Spazio tra i pulsanti
                 container.getChildren().addAll(modificaButton, rimuoviButton);
             }
-        
-        
-
+    
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
@@ -173,28 +153,49 @@ public class RubricaViewController {
             });
         }
         
-        private void modifyContactWindow(Contatto c){
-            try{
+    private void addContactWindow() {
+            try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/AddEditContact.fxml"));
                 Parent root = loader.load();
                 AddEditContactController controller = loader.getController();
                 controller.setRubrica(rubrica);
-                controller.setContatto(c);
+
+                Stage stage = new Stage();
+                stage.setTitle("Aggiungi Contatto");
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+
+                updateTableView();
+            } catch (IOException e) {
+                e.printStackTrace();
+        }
+}
+        
+    private void modifyContactWindow(Integer ID){
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/AddEditContact.fxml"));
+                
+                Parent root = loader.load();
+                AddEditContactController controller = loader.getController();
+                controller.setRubrica(rubrica);
+                controller.setID(ID);
                 controller.setEditMode(true);
+                controller.initialize();
                 
                 Stage stage = new Stage();
                 stage.setTitle("Modifica contatto");
                 stage.setScene(new Scene(root));
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
-                ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
-                tableView.setItems(data);
-            } catch (IOException e) {
+                
+                updateTableView();
+            } 
+            catch (IOException e) {
                 e.printStackTrace();
-        }
+            }
             
 }
         
-        
-}
+}        
 
