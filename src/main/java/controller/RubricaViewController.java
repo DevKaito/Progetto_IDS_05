@@ -21,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class RubricaViewController {
@@ -65,7 +66,7 @@ public class RubricaViewController {
         
         addBtn.setOnAction(event -> addContactWindow());
     
-
+        System.out.println(getClass().getResource("/resources/AddEditContact.fxml"));
        
         //TableView initialization
         rubrica = new Rubrica();
@@ -108,7 +109,7 @@ public class RubricaViewController {
     
         private void addContactWindow() {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddEditContact.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/AddEditContact.fxml"));
                 Parent root = loader.load();
                 AddEditContactController controller = loader.getController();
                 controller.setRubrica(rubrica);
@@ -116,6 +117,7 @@ public class RubricaViewController {
                 Stage stage = new Stage();
                 stage.setTitle("Aggiungi Contatto");
                 stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
                 ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
@@ -173,7 +175,7 @@ public class RubricaViewController {
         
         private void modifyContactWindow(Contatto c){
             try{
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AddEditContact.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/AddEditContact.fxml"));
                 Parent root = loader.load();
                 AddEditContactController controller = loader.getController();
                 controller.setRubrica(rubrica);
@@ -183,6 +185,7 @@ public class RubricaViewController {
                 Stage stage = new Stage();
                 stage.setTitle("Modifica contatto");
                 stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
                 ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
                 tableView.setItems(data);

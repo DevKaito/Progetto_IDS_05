@@ -100,8 +100,4 @@ public class AddEditContactController implements Initializable {
         stage.close();
     } 
 
-    
-
-    
-    
 }
