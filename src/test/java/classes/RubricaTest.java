@@ -161,17 +161,18 @@ public class RubricaTest {
         String numeriTelefono[] = {"343434", "43434343", "44444"};
         String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
         
-        Contatto c1 = new Contatto("Michele", "Adinolfi", numeriTelefono, indirizziEmail);        
-        Contatto[] cArray = new Contatto[]{c1};
+        Contatto c1 = new Contatto("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+        Contatto c2 = new Contatto("Francesco", "Abballe", numeriTelefono, indirizziEmail);
+        Contatto[] cArray = new Contatto[]{c1,c2};
         //Contatto c2 = new Contatto("Mario", "D'acunto", numeriTelefono, indirizziEmail);
         //expectedLista.put(c2.getID(), c2);
-        
         Contatto.setNumeroSequenziale(0);
         
         r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
         r.aggiungiContattoRubrica("Mario", "D'acunto", numeriTelefono, indirizziEmail);
+        r.aggiungiContattoRubrica("Francesco", "Abballe", numeriTelefono, indirizziEmail);
         r.rimuoviContatto(2);
-        
+
         assertEquals(Arrays.toString(cArray), Arrays.toString(r.getContatti().values().toArray()));
     }
     @Test

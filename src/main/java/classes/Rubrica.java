@@ -137,12 +137,16 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     public void rimuoviContatto(Integer ID){
         if(contatti.containsKey(ID)){
             int currID = ID;
+            int size = contatti.size();
             contatti.remove(currID);   
-            for(int i = currID+1; i<=contatti.size(); i++){
+            for(int i = currID+1; i<=size; i++){
                 Contatto ctemp = contatti.get(i);
-                ctemp.setID(i--);
+                Integer newID = i-1;
+                ctemp.setID(newID);
+                contatti.remove(i);
+                contatti.put(newID, ctemp);
                 if(i == contatti.size()){
-                    Contatto.setNumeroSequenziale(i-1);
+                    Contatto.setNumeroSequenziale(newID);
                 }
             }
         }
