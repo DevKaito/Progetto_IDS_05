@@ -139,8 +139,7 @@ public class RubricaViewController {
                 if (contatto != null) {
                     rubrica.rimuoviContatto(contatto.getID());
                     ObservableList<Contatto> data = FXCollections.observableArrayList(rubrica.getContatti().values());
-                    tableView.setItems(data);
-                    tableView.refresh();
+                    handleOrdinamento();
                 }
             });
             }
@@ -212,7 +211,7 @@ public class RubricaViewController {
                 Import_ExportFileController importaController = loader.getController();
                 importaController.setMainController(this);
                 Stage stage = new Stage();
-                stage.setTitle("Importa Contatti");
+                stage.setTitle("Importazione");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
                 
@@ -239,7 +238,7 @@ public class RubricaViewController {
             esportaController.setMode(true);
             esportaController.setMainController(this);
             Stage stage = new Stage();
-            stage.setTitle("Export Contatti");
+            stage.setTitle("Esportazione");
             stage.setScene(new Scene(root));
             stage.showAndWait();
                 
