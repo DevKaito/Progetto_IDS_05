@@ -17,8 +17,8 @@ public class Contatto{
     /**
      * @brief Costruttore che si occupa della creazione di un contatto con i parametri ricevuti.
      * 
-     * @param nome, nome del contatto 
-     * @param cognome, cognome del contatto
+     * @param nome nome del contatto 
+     * @param cognome cognome del contatto
      * @param numeriTelefono array di massimo 3 numeri di telefono
      * @param indirizziEmail array di massimo 3 indirizzi Email
      */

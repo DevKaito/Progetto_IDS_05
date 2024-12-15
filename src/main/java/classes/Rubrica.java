@@ -3,7 +3,6 @@ package classes;
 import interfaces.CercaContatto;
 import interfaces.OrdinaContatto;
 import enumerators.Ordinamento;
-import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.ArrayList;
@@ -150,7 +149,7 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     * @post Il contatto viene rimosso con successo dalla rubrica.
     * 
     *
-    * @param c Il contatto "Contatto c" da rimuovere dalla rubrica.
+    * @param ID L'ID del contatto da rimuovere dalla rubrica.
     */
     public void rimuoviContatto(Integer ID){
         if(contatti.containsKey(ID)){
@@ -170,16 +169,10 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
         }
         else{
             throw new RuntimeException("Non esiste tale contatto");
-        }
-        
-        
+        }  
         
     }
 
-    public Map<Integer, Contatto> getContatti(){
-        return this.contatti;
-    }
-    
     /**
     * @brief Ricerca una stringa in rubrica.
     * 
@@ -195,7 +188,6 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     public List<Contatto> eseguiRicerca(String searchValue){
         List<Contatto> risultati = new LinkedList<Contatto>();
         String searchValueLower = searchValue.toLowerCase();
-        
 
         for (Contatto c : contatti.values()){
             if(c.getNome().toLowerCase().contains(searchValueLower) | c.getCognome().toLowerCase().contains(searchValueLower)){
@@ -217,8 +209,6 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     * @post I contatti in rubrica vengono visualizzati in ordine alfabetico oppure in ordine di inserimento.
     * 
     * @param o Tipo di ordinamento.
-    * @param rubrica Rubrica da ordinare.
-    * @return Rubrica.
     */
     @Override
     public void applicaOrdinamento(Ordinamento o){
@@ -253,7 +243,10 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     public void esportaRubricaFile(String filename){
         TrasferimentoContatti.esportaContatto(contatti, filename);
     }
-
+    
+    public Map<Integer, Contatto> getContatti(){
+        return this.contatti;
+    }
 
     private Set<Map.Entry<Integer, Contatto>> getSet(){
         return contatti.entrySet();

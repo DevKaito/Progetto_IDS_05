@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ordinacontatto_0',['OrdinaContatto',['../interfaceinterfaces_1_1_ordina_contatto.html',1,'interfaces']]],
-  ['ordinamento_1',['Ordinamento',['../enumenumerators_1_1_ordinamento.html',1,'enumerators']]]
+  ['cercacontatto_0',['CercaContatto',['../interfaceinterfaces_1_1_cerca_contatto.html',1,'interfaces']]],
+  ['contatto_1',['Contatto',['../classclasses_1_1_contatto.html',1,'classes']]]
 ];

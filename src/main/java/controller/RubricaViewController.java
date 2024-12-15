@@ -57,7 +57,7 @@ public class RubricaViewController {
     public void initialize(){
         
         //Searchbar inizialization
-        searchBar.setPromptText("1233");
+        searchBar.setPromptText("e.g. Mario");
         
         //Combobox initialization
         cmb.getItems().addAll("Per aggiunta", "Alfabetico");
@@ -74,10 +74,6 @@ public class RubricaViewController {
        
         //TableView initialization con contatti di prova
         rubrica = new Rubrica();
-        rubrica.aggiungiContattoRubrica("si", "no", new String[]{"3341847499"}, new String[]{"mario@gmail.com"});
-        rubrica.aggiungiContattoRubrica("no", "si", new String[]{"3341847498", "3341857499"}, new String[]{"nintendo@gmail.com"});
-        rubrica.aggiungiContattoRubrica("Amedeo", "Pratola", new String[]{"3761847499"}, new String[]{"ophelia@dnd.com"});
-        rubrica.aggiungiContattoRubrica("Amedeo", "Bianco", new String[]{"3761347499", "9898908983"}, new String[]{"violayio@dnd.com"});
         
         BindingRicerca();
         
@@ -213,6 +209,7 @@ public class RubricaViewController {
                 Stage stage = new Stage();
                 stage.setTitle("Importazione");
                 stage.setScene(new Scene(root));
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
                 
         } catch (IOException e){}
@@ -240,6 +237,7 @@ public class RubricaViewController {
             Stage stage = new Stage();
             stage.setTitle("Esportazione");
             stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
                 
         } catch (IOException e){}
@@ -277,6 +275,5 @@ public class RubricaViewController {
         
         
     }
-
-    
+  
 }

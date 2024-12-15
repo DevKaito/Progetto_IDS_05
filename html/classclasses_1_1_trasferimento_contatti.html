@@ -90,6 +90,7 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Membri pubblici statici</a> &#124;
+<a href="#pro-static-methods">Membri protetti statici</a> &#124;
 <a href="classclasses_1_1_trasferimento_contatti-members.html">Elenco di tutti i membri</a>  </div>
   <div class="headertitle"><div class="title">Riferimenti per la classe classes.TrasferimentoContatti</div></div>
 </div><!--header-->
@@ -103,9 +104,15 @@ Membri pubblici statici</h2></td></tr>
 <tr class="memitem:a84e033af714310dd1d31e4b1e611c58e" id="r_a84e033af714310dd1d31e4b1e611c58e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84e033af714310dd1d31e4b1e611c58e">esportaContatto</a> (Map&lt; Integer, <a class="el" href="classclasses_1_1_contatto.html">Contatto</a> &gt; contatti, String filename)</td></tr>
 <tr class="memdesc:a84e033af714310dd1d31e4b1e611c58e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Riceve una mappa di contatti e la trasferisce sul file specificato.  <br /></td></tr>
 <tr class="separator:a84e033af714310dd1d31e4b1e611c58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4038f63b410bb42b18d04a6ca7a21c4" id="r_af4038f63b410bb42b18d04a6ca7a21c4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classclasses_1_1_contatto.html">Contatto</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4038f63b410bb42b18d04a6ca7a21c4">importaContatto</a> (Map&lt; Integer, <a class="el" href="classclasses_1_1_contatto.html">Contatto</a> &gt; contatti, String filename)</td></tr>
-<tr class="memdesc:af4038f63b410bb42b18d04a6ca7a21c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Riceve una mappa di contatti e aggiunge i contatti presi dal file specificato alla mappa.  <br /></td></tr>
-<tr class="separator:af4038f63b410bb42b18d04a6ca7a21c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc39735931c114713dee2be2bee23bc8" id="r_acc39735931c114713dee2be2bee23bc8"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="classclasses_1_1_contatto.html">Contatto</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc39735931c114713dee2be2bee23bc8">importaContatto</a> (String filename)</td></tr>
+<tr class="memdesc:acc39735931c114713dee2be2bee23bc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Riceve una mappa di contatti e aggiunge i contatti presi dal file specificato alla mappa.  <br /></td></tr>
+<tr class="separator:acc39735931c114713dee2be2bee23bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+Membri protetti statici</h2></td></tr>
+<tr class="memitem:aecf8b1ea396e0aa0227d1797c9714ee8" id="r_aecf8b1ea396e0aa0227d1797c9714ee8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classclasses_1_1_contatto.html">Contatto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecf8b1ea396e0aa0227d1797c9714ee8">regexContatto</a> (String line)</td></tr>
+<tr class="memdesc:aecf8b1ea396e0aa0227d1797c9714ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Riceve una stringa ed esegue un'analisi di quest'ultima secondo alcuni parametri.  <br /></td></tr>
+<tr class="separator:aecf8b1ea396e0aa0227d1797c9714ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrizione dettagliata</h2>
 <div class="textblock"><p>Classe che si occupa del trasferimento dei contatti da file esterno a rubrica e viceversa. Fornisce 2 metodi statici a tale scopo. </p>
@@ -150,8 +157,8 @@ Membri pubblici statici</h2></td></tr>
 
 </div>
 </div>
-<a id="af4038f63b410bb42b18d04a6ca7a21c4" name="af4038f63b410bb42b18d04a6ca7a21c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4038f63b410bb42b18d04a6ca7a21c4">&#9670;&#160;</a></span>importaContatto()</h2>
+<a id="acc39735931c114713dee2be2bee23bc8" name="acc39735931c114713dee2be2bee23bc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc39735931c114713dee2be2bee23bc8">&#9670;&#160;</a></span>importaContatto()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,14 +167,10 @@ Membri pubblici statici</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="classclasses_1_1_contatto.html">Contatto</a>[] classes.TrasferimentoContatti.importaContatto </td>
+          <td class="memname">static List&lt; <a class="el" href="classclasses_1_1_contatto.html">Contatto</a> &gt; classes.TrasferimentoContatti.importaContatto </td>
           <td>(</td>
-          <td class="paramtype">Map&lt; Integer, <a class="el" href="classclasses_1_1_contatto.html">Contatto</a> &gt;</td>          <td class="paramname"><span class="paramname"><em>contatti</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -178,16 +181,51 @@ Membri pubblici statici</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Riceve una mappa di contatti e aggiunge i contatti presi dal file specificato alla mappa. </p>
-<dl class="section pre"><dt>Precondizione</dt><dd>I parametri forniti siano validi. </dd></dl>
+<dl class="section pre"><dt>Precondizione</dt><dd>I parametri forniti siano validi, il file abbia ogni parametro contrassegnato da identificativo. </dd></dl>
 <dl class="section post"><dt>Postcondizione</dt><dd>I contatti vengono importati con successo sulla rubrica.</dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">contatti</td><td></td></tr>
     <tr><td class="paramname">filename</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Restituisce</dt><dd><a class="el" href="classclasses_1_1_contatto.html" title="Classe che si occupa della creazione e gestione di una istanza di un contatto.">Contatto</a>[] </dd></dl>
+<dl class="section return"><dt>Restituisce</dt><dd>List&lt;Contatto&gt; </dd></dl>
+
+</div>
+</div>
+<a id="aecf8b1ea396e0aa0227d1797c9714ee8" name="aecf8b1ea396e0aa0227d1797c9714ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecf8b1ea396e0aa0227d1797c9714ee8">&#9670;&#160;</a></span>regexContatto()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classclasses_1_1_contatto.html">Contatto</a> classes.TrasferimentoContatti.regexContatto </td>
+          <td>(</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>line</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Riceve una stringa ed esegue un'analisi di quest'ultima secondo alcuni parametri. </p>
+<dl class="section pre"><dt>Precondizione</dt><dd>La stringa in input sia valida. </dd></dl>
+<dl class="section post"><dt>Postcondizione</dt><dd>La stringa viene analizzata secondo i pattern stabiliti.</dd></dl>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Restituisce</dt><dd><a class="el" href="classclasses_1_1_contatto.html" title="Classe che si occupa della creazione e gestione di una istanza di un contatto.">Contatto</a> </dd></dl>
 
 </div>
 </div>

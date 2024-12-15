@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['rubrica_0',['Rubrica',['../classclasses_1_1_rubrica.html',1,'classes']]],
-  ['rubricaapp_1',['RubricaApp',['../classclasses_1_1_rubrica_app.html',1,'classes']]],
-  ['rubricacontroller_2',['RubricaController',['../classcontroller_1_1_rubrica_controller.html',1,'controller']]]
+  ['import_5fexportfilecontroller_0',['Import_ExportFileController',['../classcontroller_1_1_import___export_file_controller.html',1,'controller']]]
 ];
