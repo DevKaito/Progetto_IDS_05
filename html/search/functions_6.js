@@ -8,7 +8,5 @@ var searchData=
   ['testimportacontatto1_5',['testImportaContatto1',['../classclasses_1_1_trasferimento_contatti_test.html#aa5517c90193a20ac8d49e1598266ae53',1,'classes::TrasferimentoContattiTest']]],
   ['testmodificacontatto1_6',['testModificaContatto1',['../classclasses_1_1_rubrica_test.html#ab5a94b826c6f60aac34ff58dd7c030ce',1,'classes::RubricaTest']]],
   ['testregexcontatto_7',['testRegexContatto',['../classclasses_1_1_trasferimento_contatti_test.html#ad06e298141fab17b233120c86e56269f',1,'classes::TrasferimentoContattiTest']]],
-  ['testrimuovicontatto1_8',['testRimuoviContatto1',['../classclasses_1_1_rubrica_test.html#ad870ac53b4cd89628e23d40fbb0bb6b4',1,'classes::RubricaTest']]],
-  ['trasferimentocontatti_9',['TrasferimentoContatti',['../classclasses_1_1_trasferimento_contatti.html',1,'classes']]],
-  ['trasferimentocontattitest_10',['TrasferimentoContattiTest',['../classclasses_1_1_trasferimento_contatti_test.html',1,'classes']]]
+  ['testrimuovicontatto1_8',['testRimuoviContatto1',['../classclasses_1_1_rubrica_test.html#ad870ac53b4cd89628e23d40fbb0bb6b4',1,'classes::RubricaTest']]]
 ];

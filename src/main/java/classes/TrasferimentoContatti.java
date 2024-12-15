@@ -1,7 +1,5 @@
 package classes;
 
-
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -53,9 +51,9 @@ public class TrasferimentoContatti {
      */
     public static List<Contatto> importaContatto(String filename){
         List<Contatto> contatti = new LinkedList<>();
-        try (Scanner s = new Scanner(new BufferedReader(new FileReader(filename)))){
-           
-            if (!s.hasNextLine()) throw new IOException("File vuoto");
+        try (Scanner s = new Scanner(new BufferedReader(new FileReader(filename)))){           
+            if (!s.hasNextLine()) 
+                throw new IOException("File vuoto");
 
             while(s.hasNext()){
                 Contatto contatto = regexContatto(s.nextLine());

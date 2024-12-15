@@ -47,8 +47,8 @@
       </HBox>
       <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="823.0">
          <columns>
-            <TableColumn fx:id="nomeColumn" prefWidth="87.0" text="Nome" />
             <TableColumn fx:id="cognomeColumn" prefWidth="85.0" text="Cognome" />
+            <TableColumn fx:id="nomeColumn" prefWidth="87.0" text="Nome" />
             <TableColumn fx:id="numeriDiTelefonoColumn" prefWidth="202.0" text="Numero/i di telefono" />
             <TableColumn fx:id="indirizziEmailColumn" prefWidth="180.0" text="Indirizzo/i E-Mail" />
             <TableColumn fx:id="gestioneColumn" prefWidth="275.0" text="Gestione" />
