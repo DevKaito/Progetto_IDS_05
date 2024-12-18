@@ -3,6 +3,7 @@ package classes;
 import interfaces.CercaContatto;
 import interfaces.OrdinaContatto;
 import enumerators.Ordinamento;
+import interfaces.ErrorHandler;
 import java.util.Map;
 import java.util.Set;
 import java.util.ArrayList;
@@ -11,20 +12,22 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.scene.control.Alert;
 
 /**
  * 
  * @brief Classe che si occupa della rappresentazione della rubrica contenente funzioni utili per i contatti che contiene.
  */
-public class Rubrica implements CercaContatto, OrdinaContatto{
+public class Rubrica implements CercaContatto, OrdinaContatto, ErrorHandler{
     private Map<Integer, Contatto> contatti;
-    
+    private boolean showAlerts = true;
     /**
     * @brief Inizializza la rubrica.
     */
     public Rubrica(){
         contatti = new LinkedHashMap<>();
     }
+    
     
     /**
     * @brief Crea e aggiunge un contatto alla rubrica.
@@ -43,23 +46,27 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
         
         if(!nome.isEmpty()){
             if(numeriTelefono.length > 3){
-                System.err.println("Superato il limite di numeri di telefono possedibili. Sono stati selezionati i primi 3");
+                showError("Superato il limite di numeri di telefono possedibili. Sono stati selezionati i primi 3");
                 numeriTelefono = Arrays.copyOf(numeriTelefono, 3);
             }
             
             if(indirizziEmail.length > 3){
-                System.err.println("Superato il limite di indirizzi email possedibili. Sono stati selezionati i primi 3");
+                showError("Superato il limite di indirizzi email possedibili. Sono state selezionate le prime 3");
                 indirizziEmail = Arrays.copyOf(indirizziEmail, 3);
             }
             
             for(String s : indirizziEmail){
-                if(!s.contains("@") || !s.contains("."))
-                    throw new RuntimeException("L'Email inserita non risulta valida.");
+                if(!s.contains("@") || !s.contains(".")){
+                    showError("L'Email inserita non risulta valida.");
+                    throw new RuntimeException();
+                }
             }
             
             for(String s : numeriTelefono){
-                if(s.length() != 10)
-                    throw new RuntimeException("Il numero di telefono inserito non risulta valido");
+                if(s.length() != 10){
+                    showError("Il numero di telefono inserito non risulta valido");
+                    throw new RuntimeException();
+                }
             }
             
             Contatto c = new Contatto(nome, cognome, numeriTelefono, indirizziEmail);
@@ -109,27 +116,33 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
             nuovoContatto.setNome(nome);
             nuovoContatto.setCognome(cognome);
             if(numeriTelefono.length > 3){
-                System.err.println("Errore! Un contatto può avere massimo 3 numeri di telefono!");
+                showError("Errore! Un contatto può avere massimo 3 numeri di telefono!");
                 nuovoContatto.setNumeriTelefono(Arrays.copyOf(numeriTelefono, 3));
             } else {
                 nuovoContatto.setNumeriTelefono(numeriTelefono);
             }
 
             if(indirizziEmail.length > 3){
-                System.err.println("Errore! Un contatto può avere massimo 3 indirizzi email!");
+                showError("Errore! Un contatto può avere massimo 3 indirizzi email!");
                 nuovoContatto.setIndirizziEmail(Arrays.copyOf(indirizziEmail, 3));
             } else {
                 nuovoContatto.setIndirizziEmail(indirizziEmail);
             }
             
             for(String s : indirizziEmail){
-                if(!s.contains("@") || !s.contains("."))
-                    throw new RuntimeException("L'Email inserita non risulta valida.");
+                if(!s.contains("@") || !s.contains(".")){
+                    showError("L'Email inserita non risulta valida.");
+                    throw new RuntimeException();
+                }
+                    
+                   
             }
             
             for(String s : numeriTelefono){
-                if(s.length() != 10 || !s.matches("\\d+"))
-                    throw new RuntimeException("Il numero di telefono inserito non risulta valido");
+                if(s.length() != 10 || !s.matches("\\d+")){
+                    showError("Il numero di telefono inserito non risulta valido");
+                    throw new RuntimeException();
+                }
             }
             
             contatti.put(ID, nuovoContatto);
@@ -251,5 +264,29 @@ public class Rubrica implements CercaContatto, OrdinaContatto{
     private Set<Map.Entry<Integer, Contatto>> getSet(){
         return contatti.entrySet();
     }
+    
+    public void setShowAlerts(boolean showAlerts) {
+        this.showAlerts = showAlerts;
+    }
+    
+    /**
+    * @brief Mostra un warning a schermo in caso di dato errato inserito nella Rubrica.
+    * 
+    * @pre L'utente inserisce un dato errato.
+    * @post Compare un messaggio di warning a schermo.
+    * 
+    * @param message Definisce il messaggio da mostrare a schermo.
+    */
+    @Override
+    public void showError(String message){
+        if (showAlerts){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore di Inserimento");
+            alert.setHeaderText("Dati non validi");
+            alert.setContentText(message);
+            alert.showAndWait();
+        }
+    }
+  
 }
 

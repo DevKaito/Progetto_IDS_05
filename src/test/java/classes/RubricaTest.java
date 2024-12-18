@@ -36,6 +36,7 @@ public class RubricaTest {
     public void setUp() {
        r = new Rubrica();
        Contatto.setNumeroSequenziale(0);
+       r.setShowAlerts(false);
     }
     
     @AfterEach

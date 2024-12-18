@@ -27,7 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class RubricaViewController {
+public class RubricaViewController{
     private Rubrica rubrica;    
     @FXML
     private TextField searchBar;
@@ -275,5 +275,5 @@ public class RubricaViewController {
         
         
     }
-  
+    
 }
