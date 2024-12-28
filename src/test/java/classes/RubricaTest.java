@@ -245,27 +245,30 @@ public class RubricaTest {
      */
      
     @Test
-    public void testApplicaOrdinamento1() {
-        String numeriTelefono[] = {"3341847499", "3341847497", "3341847494"};
-        String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
-        
-        r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
-        r.aggiungiContattoRubrica("Mario", "d'acunto", numeriTelefono, indirizziEmail);
-        r.aggiungiContattoRubrica("Giovanni", "DEL NERO", numeriTelefono, indirizziEmail);
-        r.aggiungiContattoRubrica("Michele", "Kaito", numeriTelefono, indirizziEmail);
+public void testApplicaOrdinamento1() {
+    String numeriTelefono[] = {"3341847499", "3341847497", "3341847494"};
+    String indirizziEmail[] = {"dadada@gmail.com", "dadadadadadad@gmail.com"};
+    
+    r.aggiungiContattoRubrica("Michele", "Adinolfi", numeriTelefono, indirizziEmail);
+    r.aggiungiContattoRubrica("Mario", "d'acunto", numeriTelefono, indirizziEmail);
+    r.aggiungiContattoRubrica("Giovanni", "DEL NERO", numeriTelefono, indirizziEmail);
+    r.aggiungiContattoRubrica("Michele", "Kaito", numeriTelefono, indirizziEmail);
 
-        r.applicaOrdinamento(Ordinamento.OrdineAlfabetico);
+    r.applicaOrdinamento(Ordinamento.OrdineAlfabetico);
 
-        List<Contatto> risultati = new ArrayList<>(r.getContatti().values());
+    List<Contatto> risultati = new ArrayList<>(r.getContatti().values());
 
-        assertEquals("Giovanni", risultati.get(0).getNome());
-        assertEquals("Mario", risultati.get(1).getNome());
-        assertEquals("Michele", risultati.get(2).getNome());
-        assertEquals("Michele", risultati.get(3).getNome());
+    assertEquals("Adinolfi", risultati.get(0).getCognome());
+    assertEquals("DEL NERO", risultati.get(2).getCognome());
+    assertEquals("d'acunto", risultati.get(1).getCognome());
+    assertEquals("Kaito", risultati.get(3).getCognome());
 
-        assertEquals("Adinolfi", risultati.get(2).getCognome());
-        assertEquals("Kaito", risultati.get(3).getCognome());
-    }
+    assertEquals("Michele", risultati.get(0).getNome());
+    assertEquals("Giovanni", risultati.get(2).getNome());
+    assertEquals("Mario", risultati.get(1).getNome());
+    assertEquals("Michele", risultati.get(3).getNome());
+}
+
 
     @Test
     public void testApplicaOrdinamento2() {

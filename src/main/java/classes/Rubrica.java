@@ -228,8 +228,8 @@ public class Rubrica implements CercaContatto, OrdinaContatto, ErrorHandler{
         List<Map.Entry<Integer, Contatto>> lista = new ArrayList<>(this.getSet());
         Map<Integer, Contatto> orderedList = new LinkedHashMap<>();
         if (o==Ordinamento.OrdineAlfabetico){
-            lista.sort(Comparator.comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getCognome())
-            .thenComparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getNome()));
+            lista.sort(Comparator.comparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getCognome().toLowerCase())
+            .thenComparing((Map.Entry<Integer,Contatto> entry) -> entry.getValue().getNome().toLowerCase()));
             
             for (Map.Entry<Integer, Contatto> entry : lista){
                 orderedList.put(entry.getKey(), entry.getValue());
